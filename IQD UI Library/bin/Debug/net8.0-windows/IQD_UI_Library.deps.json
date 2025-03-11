@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "IQD_UI_Library/1.0.0": {
+        "runtime": {
+          "IQD_UI_Library.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "IQD_UI_Library/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

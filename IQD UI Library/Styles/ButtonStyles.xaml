@@ -1,0 +1,242 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:local="clr-namespace:IQD_UI_Library">
+
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/IQD_UI_Library;component/Styles/ButtonStyles3D.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+
+    <!-- Start: Button | Minimize | Maximize | Close -->
+    <Style x:Key="IconButtonsStyle" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="Width" Value="25"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Name="bd" CornerRadius="5" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <Path Name="ico" Data="{TemplateBinding Content}"
+                            Fill="{DynamicResource PrimaryTextColor}" Height="10" Width="10" Stretch="Uniform"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource SecundaryBackgroundColor}"/>
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                                <Condition Property="Tag" Value="IsCloseButton"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Background" Value="#F72626"/>
+                            <Setter TargetName="ico" Property="Fill" Value="#FFFFFF"/>
+                        </MultiTrigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="ico" Property="Fill" Value="{DynamicResource TertiaryTextColor}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!-- End: Button | Minimize | Maximize | Close -->
+
+    <!-- Start: ProButtonStyle (Default Btn Styles) -->
+    <Style TargetType="{x:Type local:IQD_Button}">
+        <Setter Property="Background" Value="WhiteSmoke"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Padding" Value="12 6"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Width" Value="Auto"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="btnBorder" CornerRadius="20"
+                     Background="{TemplateBinding Background}"
+                     Width="{TemplateBinding Width}"
+                     BorderThickness="{TemplateBinding BorderThickness}"
+                     SnapsToDevicePixels="True"
+                     Padding="{TemplateBinding Padding}">
+                        <ContentPresenter x:Name="ContentPresenter" Focusable="False"
+                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                   Margin="{TemplateBinding Padding}"
+                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                   RecognizesAccessKey="True"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="btnBorder" Property="Background" Value="DodgerBlue"/>
+                            <Setter TargetName="btnBorder" Property="TextElement.Foreground" Value="White"/>
+                            <Setter TargetName="btnBorder" Property="CornerRadius" Value="21"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="btnBorder" Property="Background" Value="GreenYellow"/>
+                            <Setter TargetName="btnBorder" Property="TextElement.Foreground" Value="Black"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!-- End: ProButtonStyle -->
+
+    <!--btn With Icon--><!--
+    <Style x:Key="ButtonsWithIconStyle" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="DodgerBlue"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Padding" Value="12,6"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:IQD_Button}">
+                    <Border Background="{TemplateBinding Background}" 
+                        CornerRadius="8"
+                        Padding="{TemplateBinding Padding}">
+                        <DockPanel LastChildFill="True">
+                            --><!-- صورة --><!--
+                            <Image Source="{TemplateBinding Icon}"
+                               Width="24" Height="24"
+                               DockPanel.Dock="{TemplateBinding IconPosition}"/>
+
+                            --><!-- نص --><!--
+                            <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          Margin="5,0,0,0"/>
+                        </DockPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>-->
+
+
+    <!-- Button Style with Icon -->
+    <Style x:Key="ButtonsWithIconStyle" TargetType="{x:Type local:IQD_Button}">
+        <Setter Property="Background" Value="DodgerBlue"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Padding" Value="12,6"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="IconSize" Value="24"/>
+        <!-- حجم الصورة الافتراضي -->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:IQD_Button}">
+                    <Border Background="{TemplateBinding Background}" 
+                        CornerRadius="8"
+                        Padding="{TemplateBinding Padding}">
+                        <DockPanel LastChildFill="True">
+                            <!-- صورة -->
+                            <Image x:Name="btnIcon"
+                               Source="{TemplateBinding Icon}"
+                               Width="{TemplateBinding IconSize}" 
+                               Height="{TemplateBinding IconSize}"
+                               DockPanel.Dock="{TemplateBinding IconPosition}">
+                                <Image.RenderTransform>
+                                    <ScaleTransform x:Name="IconScale" ScaleX="1" ScaleY="1" />
+                                </Image.RenderTransform>
+                            </Image>
+
+                            <!-- نص -->
+                            <ContentPresenter x:Name="btnText"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          Margin="5,0,0,0">
+                                <ContentPresenter.RenderTransform>
+                                    <ScaleTransform x:Name="TextScale" ScaleX="1" ScaleY="1" />
+                                </ContentPresenter.RenderTransform>
+                            </ContentPresenter>
+                        </DockPanel>
+                    </Border>
+
+                    <!-- تأثير عند مرور الماوس -->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <!-- تكبير الأيقونة -->
+                                        <DoubleAnimation Storyboard.TargetName="IconScale"
+                                     Storyboard.TargetProperty="ScaleX"
+                                     To="1.2" Duration="0:0:0.2"/>
+                                        <DoubleAnimation Storyboard.TargetName="IconScale"
+                                     Storyboard.TargetProperty="ScaleY"
+                                     To="1.2" Duration="0:0:0.2"/>
+
+                                        <!-- تكبير النص -->
+                                        <DoubleAnimation Storyboard.TargetName="TextScale"
+                                     Storyboard.TargetProperty="ScaleX"
+                                     To="1.2" Duration="0:0:0.2"/>
+                                        <DoubleAnimation Storyboard.TargetName="TextScale"
+                                     Storyboard.TargetProperty="ScaleY"
+                                     To="1.2" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <!-- إعادة الحجم الطبيعي -->
+                                        <DoubleAnimation Storyboard.TargetName="IconScale"
+                                     Storyboard.TargetProperty="ScaleX"
+                                     To="1" Duration="0:0:0.2"/>
+                                        <DoubleAnimation Storyboard.TargetName="IconScale"
+                                     Storyboard.TargetProperty="ScaleY"
+                                     To="1" Duration="0:0:0.2"/>
+
+                                        <DoubleAnimation Storyboard.TargetName="TextScale"
+                                     Storyboard.TargetProperty="ScaleX"
+                                     To="1" Duration="0:0:0.2"/>
+                                        <DoubleAnimation Storyboard.TargetName="TextScale"
+                                     Storyboard.TargetProperty="ScaleY"
+                                     To="1" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <!-- إرجاع الحجم الطبيعي عند الضغط -->
+                                        <DoubleAnimation Storyboard.TargetName="IconScale"
+                                     Storyboard.TargetProperty="ScaleX"
+                                     To="1" Duration="0:0:0.1"/>
+                                        <DoubleAnimation Storyboard.TargetName="IconScale"
+                                     Storyboard.TargetProperty="ScaleY"
+                                     To="1" Duration="0:0:0.1"/>
+
+                                        <DoubleAnimation Storyboard.TargetName="TextScale"
+                                     Storyboard.TargetProperty="ScaleX"
+                                     To="1" Duration="0:0:0.1"/>
+                                        <DoubleAnimation Storyboard.TargetName="TextScale"
+                                     Storyboard.TargetProperty="ScaleY"
+                                     To="1" Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+</ResourceDictionary>
