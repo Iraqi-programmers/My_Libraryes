@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="CustomControls\CusromBorder\" />
     <Folder Include="User Controls\" />
   </ItemGroup>
 
