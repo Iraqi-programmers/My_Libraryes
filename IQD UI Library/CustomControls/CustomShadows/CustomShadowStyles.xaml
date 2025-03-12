@@ -1,6 +1,14 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary 
+            Source="/IQD_UI_Library;component/CustomControls/CustomShadows/ShadowResources.xaml">
+        </ResourceDictionary>
+    </ResourceDictionary.MergedDictionaries>
+    
+    
     <!-- ستايل الظل الطبيعي -->
     <Style x:Key="CustomShadowNaturalStyle" TargetType="Control">
         <Setter Property="Effect">
@@ -55,7 +63,7 @@
     </Style>
 
     <!-- ستايل الظل المسطح -->
-    <Style x:Key="CustomShadowFlatStyle_1" TargetType="Control">
+    <Style x:Key="CustomShadowFlatStyle" TargetType="Control">
         <Setter Property="Effect">
             <Setter.Value>
                 <DropShadowEffect 
