@@ -1,0 +1,77 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <!-- 🎨 إعدادات الألوان -->
+    <Color x:Key="CustomGlowColor">White</Color>
+
+    <Color x:Key="GlowColorSoftBlue">LightBlue</Color>
+    <Color x:Key="GlowColorMediumBlue">DodgerBlue</Color>
+    <Color x:Key="GlowColorStrongBlue">Blue</Color>
+    <Color x:Key="GlowColorUltraBlue">RoyalBlue</Color>
+    <Color x:Key="GlowColorNeonBlue">Cyan</Color>
+
+    <Color x:Key="GlowColorSoftRed">LightCoral</Color>
+    <Color x:Key="GlowColorMediumRed">Crimson</Color>
+    <Color x:Key="GlowColorStrongRed">Red</Color>
+    <Color x:Key="GlowColorUltraRed">DarkRed</Color>
+    <Color x:Key="GlowColorNeonRed">OrangeRed</Color>
+
+    <Color x:Key="GlowColorSoftGreen">LightGreen</Color>
+    <Color x:Key="GlowColorMediumGreen">LimeGreen</Color>
+    <Color x:Key="GlowColorStrongGreen">Green</Color>
+    <Color x:Key="GlowColorUltraGreen">DarkGreen</Color>
+    <Color x:Key="GlowColorNeonGreen">SpringGreen</Color>
+
+    <Color x:Key="GlowColorSoftYellow">LightYellow</Color>
+    <Color x:Key="GlowColorMediumYellow">Gold</Color>
+    <Color x:Key="GlowColorStrongYellow">Yellow</Color>
+    <Color x:Key="GlowColorUltraYellow">DarkGoldenrod</Color>
+    <Color x:Key="GlowColorNeonYellow">LemonChiffon</Color>
+
+    <Color x:Key="GlowColorSoftPurple">Lavender</Color>
+    <Color x:Key="GlowColorMediumPurple">MediumPurple</Color>
+    <Color x:Key="GlowColorStrongPurple">Purple</Color>
+    <Color x:Key="GlowColorUltraPurple">Indigo</Color>
+    <Color x:Key="GlowColorNeonPurple">Magenta</Color>
+
+    <Color x:Key="GlowColorSoftWhite">WhiteSmoke</Color>
+    <Color x:Key="GlowColorMediumWhite">Gainsboro</Color>
+    <Color x:Key="GlowColorStrongWhite">White</Color>
+    <Color x:Key="GlowColorUltraWhite">Snow</Color>
+    <Color x:Key="GlowColorNeonWhite">Azure</Color>
+
+    <Color x:Key="GlowColorSoftBlack">DimGray</Color>
+    <Color x:Key="GlowColorMediumBlack">Gray</Color>
+    <Color x:Key="GlowColorStrongBlack">Black</Color>
+    <Color x:Key="GlowColorUltraBlack">DarkSlateGray</Color>
+    <Color x:Key="GlowColorNeonBlack">MidnightBlue</Color>
+
+    <Color x:Key="GlowColorSoftOrange">PeachPuff</Color>
+    <Color x:Key="GlowColorMediumOrange">DarkOrange</Color>
+    <Color x:Key="GlowColorStrongOrange">Orange</Color>
+    <Color x:Key="GlowColorUltraOrange">Sienna</Color>
+    <Color x:Key="GlowColorNeonOrange">Gold</Color>
+
+    <Color x:Key="GlowColorSoftBrown">RosyBrown</Color>
+    <Color x:Key="GlowColorMediumBrown">SaddleBrown</Color>
+    <Color x:Key="GlowColorStrongBrown">Brown</Color>
+    <Color x:Key="GlowColorUltraBrown">Maroon</Color>
+    <Color x:Key="GlowColorNeonBrown">Chocolate</Color>
+
+    <Color x:Key="GlowColorSoftPink">Pink</Color>
+    <Color x:Key="GlowColorMediumPink">HotPink</Color>
+    <Color x:Key="GlowColorStrongPink">DeepPink</Color>
+    <Color x:Key="GlowColorUltraPink">PaleVioletRed</Color>
+    <Color x:Key="GlowColorNeonPink">Orchid</Color>
+
+    <!-- 🔥 إعدادات قوة التوهج -->
+    <system:Double x:Key="CustomGlowRadius">10</system:Double>
+
+    <system:Double x:Key="GlowRadiusSoft">5</system:Double>
+    <system:Double x:Key="GlowRadiusMedium">10</system:Double>
+    <system:Double x:Key="GlowRadiusStrong">15</system:Double>
+    <system:Double x:Key="GlowRadiusUltra">20</system:Double>
+    <system:Double x:Key="GlowRadiusNeon">25</system:Double>
+
+</ResourceDictionary>

@@ -44,6 +44,7 @@ namespace IQD_UI_Library
         DependencyProperty.Register("InnerBorderImage", typeof(ImageSource), typeof(IQD_TextBox), new PropertyMetadata(null));
 
 
+
         public static readonly DependencyProperty BorderBrushing =
        DependencyProperty.Register("BorderBrushing", typeof(Brush), typeof(IQD_TextBox), new PropertyMetadata(null));
 
@@ -52,6 +53,8 @@ namespace IQD_UI_Library
             get { return (Brush)GetValue(BorderBrushing); }
             set { SetValue(BorderBrushing, value); }
         }
+
+
         public ImageSource InnerBorderImage
         {
             get { return (ImageSource)GetValue(InnerBorderImageProperty); }
