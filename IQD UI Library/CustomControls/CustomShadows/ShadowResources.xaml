@@ -1,0 +1,63 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <!-- إعدادات الظل الطبيعي -->
+    <system:Double x:Key="NaturalShadowBlurRadius_1">15</system:Double>
+    <system:Double x:Key="NaturalShadowDepth_1">5</system:Double>
+    <system:Double x:Key="NaturalShadowOpacity_1">0.3</system:Double>
+    <Color x:Key="NaturalShadowColor_1">Black</Color>
+
+    <system:Double x:Key="NaturalShadowBlurRadius_2">20</system:Double>
+    <system:Double x:Key="NaturalShadowDepth_2">8</system:Double>
+    <system:Double x:Key="NaturalShadowOpacity_2">0.4</system:Double>
+    <Color x:Key="NaturalShadowColor_2">Gray</Color>
+
+    <system:Double x:Key="NaturalShadowBlurRadius_3">10</system:Double>
+    <system:Double x:Key="NaturalShadowDepth_3">3</system:Double>
+    <system:Double x:Key="NaturalShadowOpacity_3">0.6</system:Double>
+    <Color x:Key="NaturalShadowColor_3">DarkGray</Color>
+
+    <!-- إعدادات الظل المسطح -->
+    <system:Double x:Key="FlatShadowBlurRadius">5</system:Double>
+    <system:Double x:Key="FlatShadowDepth">0</system:Double>
+    <system:Double x:Key="FlatShadowOpacity">0.7</system:Double>
+    <Color x:Key="FlatShadowColor">Black</Color>
+
+    <system:Double x:Key="FlatShadowBlurRadius_2">8</system:Double>
+    <system:Double x:Key="FlatShadowDepth_2">0</system:Double>
+    <system:Double x:Key="FlatShadowOpacity_2">0.6</system:Double>
+    <Color x:Key="FlatShadowColor_2">LightGray</Color>
+
+    <system:Double x:Key="FlatShadowBlurRadius_3">12</system:Double>
+    <system:Double x:Key="FlatShadowDepth_3">0</system:Double>
+    <system:Double x:Key="FlatShadowOpacity_3">0.5</system:Double>
+    <Color x:Key="FlatShadowColor_3">DarkGray</Color>
+    
+    <!-- إعدادات الظل ثلاثي الأبعاد -->
+    <system:Double x:Key="ThreeDShadowBlurRadius_1">10</system:Double>
+    <system:Double x:Key="ThreeDShadowDepth_1">15</system:Double>
+    <system:Double x:Key="ThreeDShadowOpacity_1">0.8</system:Double>
+    <Color x:Key="ThreeDShadowColor_1">Black</Color>
+
+    <system:Double x:Key="ThreeDShadowBlurRadius_2">15</system:Double>
+    <system:Double x:Key="ThreeDShadowDepth_2">18</system:Double>
+    <system:Double x:Key="ThreeDShadowOpacity_2">0.6</system:Double>
+    <Color x:Key="ThreeDShadowColor_2">Gray</Color>
+
+    <system:Double x:Key="ThreeDShadowBlurRadius_3">18</system:Double>
+    <system:Double x:Key="ThreeDShadowDepth_3">10</system:Double>
+    <system:Double x:Key="ThreeDShadowOpacity_3">0.9</system:Double>
+    <Color x:Key="ThreeDShadowColor_3">DarkGray</Color>
+
+    <!-- إعدادات اتجاهات الظل -->
+    <system:Double x:Key="DirectionTopLeft">225</system:Double>
+    <system:Double x:Key="DirectionTopRight">315</system:Double>
+    <system:Double x:Key="DirectionBottomLeft">135</system:Double>
+    <system:Double x:Key="DirectionBottomRight">45</system:Double>
+    <system:Double x:Key="DirectionLeft">180</system:Double>
+    <system:Double x:Key="DirectionRight">0</system:Double>
+    <system:Double x:Key="DirectionTop">270</system:Double>
+    <system:Double x:Key="DirectionBottom">90</system:Double>
+
+</ResourceDictionary>

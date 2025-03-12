@@ -1,3 +1,7 @@
+
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
 <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
@@ -26,13 +30,23 @@
     </Style>-->
 
 
+
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/IQD_UI_Library;component/Styles/ButtonStyles.xaml"/>
         <ResourceDictionary Source="/IQD_UI_Library;component/Styles/RadioButtonStyles.xaml"/>
         <ResourceDictionary Source="/IQD_UI_Library;component/Themes/LightTheme.xaml"/>
         <ResourceDictionary Source="/IQD_UI_Library;component/Themes/DarkTheme.xaml"/>
         <ResourceDictionary Source="/IQD_UI_Library;component/Styles/TextBoxStyles.xaml"/>
+        <!-- الظل -->
+        <ResourceDictionary Source="/IQD_UI_Library;component/CustomControls/CustomShados/ShadowResources.xaml"/>
+        <ResourceDictionary Source="/IQD_UI_Library;component/CustomControls/CustomShados/CustomShadowStyles.xaml"/>
+        <!-- التوهج -->
+        <ResourceDictionary Source="/IQD_UI_Library;component/CustomControls/CustomGlows/GlowResources.xaml"/>
+        <ResourceDictionary Source="/IQD_UI_Library;component/CustomControls/CustomGlows/CustomGlowStyles.xaml"/>
     </ResourceDictionary.MergedDictionaries>
+
+
+</ResourceDictionary>
 
     <!--<Style TargetType="{x:Type local:IQD_TextBox}">
         <Setter Property="Template">
@@ -47,3 +61,4 @@
         </Setter>
     </Style>-->
 </ResourceDictionary>
+
