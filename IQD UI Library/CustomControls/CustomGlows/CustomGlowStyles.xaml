@@ -1,6 +1,14 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary 
+            Source="/IQD_UI_Library;component/CustomControls/CustomGlows/GlowResources.xaml">
+        </ResourceDictionary>
+    </ResourceDictionary.MergedDictionaries>
+    
     <!-- ستايل قابل للتخصيص -->
     <Style x:Key="CustomGlow" TargetType="Control">
         <Setter Property="Effect">
