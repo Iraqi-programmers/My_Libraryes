@@ -1,0 +1,166 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- ستايل قابل للتخصيص -->
+    <Style x:Key="CustomGlow" TargetType="Control">
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="{DynamicResource CustomGlowRadius}" 
+                          Color="{DynamicResource CustomGlowColor}" 
+                          ShadowDepth="0" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- ⚡ ستايلات التوهج -->
+    <Style x:Key="CustomGlowSoftBlue" TargetType="Control">
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="{StaticResource GlowRadiusSoft}" 
+                              Color="{StaticResource GlowColorSoftBlue}" 
+                              ShadowDepth="0" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CustomGlowMediumBlue" TargetType="Control">
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="{StaticResource GlowRadiusMedium}" 
+                              Color="{StaticResource GlowColorMediumBlue}" 
+                              ShadowDepth="0" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CustomGlowStrongBlue" TargetType="Control">
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="{StaticResource GlowRadiusStrong}" 
+                              Color="{StaticResource GlowColorStrongBlue}" 
+                              ShadowDepth="0" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CustomGlowUltraBlue" TargetType="Control">
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="{StaticResource GlowRadiusUltra}" 
+                              Color="{StaticResource GlowColorUltraBlue}" 
+                              ShadowDepth="0" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CustomGlowNeonBlue" TargetType="Control">
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="{StaticResource GlowRadiusNeon}" 
+                              Color="{StaticResource GlowColorNeonBlue}" 
+                              ShadowDepth="0" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CustomGlowSoftRed" TargetType="Control">
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="{StaticResource GlowRadiusSoft}" 
+                              Color="{StaticResource GlowColorSoftRed}" 
+                              ShadowDepth="0" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CustomGlowMediumRed" TargetType="Control">
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="{StaticResource GlowRadiusMedium}" 
+                              Color="{StaticResource GlowColorMediumRed}" 
+                              ShadowDepth="0" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CustomGlowStrongRed" TargetType="Control">
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="{StaticResource GlowRadiusStrong}" 
+                              Color="{StaticResource GlowColorStrongRed}" 
+                              ShadowDepth="0" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CustomGlowUltraRed" TargetType="Control">
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="{StaticResource GlowRadiusUltra}" 
+                              Color="{StaticResource GlowColorUltraRed}" 
+                              ShadowDepth="0" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CustomGlowNeonRed" TargetType="Control">
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="{StaticResource GlowRadiusNeon}" 
+                              Color="{StaticResource GlowColorNeonRed}" 
+                              ShadowDepth="0" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CustomGlowSoftGreen" TargetType="Control">
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="{StaticResource GlowRadiusSoft}" 
+                              Color="{StaticResource GlowColorSoftGreen}" 
+                              ShadowDepth="0" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CustomGlowMediumGreen" TargetType="Control">
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="{StaticResource GlowRadiusMedium}" 
+                              Color="{StaticResource GlowColorMediumGreen}" 
+                              ShadowDepth="0" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CustomGlowStrongGreen" TargetType="Control">
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="{StaticResource GlowRadiusStrong}" 
+                              Color="{StaticResource GlowColorStrongGreen}" 
+                              ShadowDepth="0" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CustomGlowUltraGreen" TargetType="Control">
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="{StaticResource GlowRadiusUltra}" 
+                              Color="{StaticResource GlowColorUltraGreen}" 
+                              ShadowDepth="0" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CustomGlowNeonGreen" TargetType="Control">
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="{StaticResource GlowRadiusNeon}" 
+                              Color="{StaticResource GlowColorNeonGreen}" 
+                              ShadowDepth="0" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+</ResourceDictionary>

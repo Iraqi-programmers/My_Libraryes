@@ -1,0 +1,163 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- ستايل الظل الطبيعي -->
+    <Style x:Key="CustomShadowNaturalStyle" TargetType="Control">
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect 
+                    BlurRadius="{DynamicResource NaturalShadowBlurRadius_1}" 
+                    ShadowDepth="{DynamicResource NaturalShadowDepth_1}"
+                    Opacity="{DynamicResource NaturalShadowOpacity_1}"
+                    Color="{DynamicResource NaturalShadowColor_1}"
+                    Direction="{DynamicResource DirectionBottomRight}"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CustomShadowNaturalStyle_1" TargetType="Control">
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect 
+                    BlurRadius="{StaticResource NaturalShadowBlurRadius_1}" 
+                    ShadowDepth="{StaticResource NaturalShadowDepth_1}"
+                    Opacity="{StaticResource NaturalShadowOpacity_1}"
+                    Color="{StaticResource NaturalShadowColor_1}"
+                    Direction="{DynamicResource DirectionBottomRight}"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CustomShadowNaturalStyle_2" TargetType="Control">
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect 
+                    BlurRadius="{StaticResource NaturalShadowBlurRadius_2}" 
+                    ShadowDepth="{StaticResource NaturalShadowDepth_2}"
+                    Opacity="{StaticResource NaturalShadowOpacity_2}"
+                    Color="{StaticResource NaturalShadowColor_2}"
+                    Direction="{DynamicResource DirectionBottomRight}"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CustomShadowNaturalStyle_3" TargetType="Control">
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect 
+                    BlurRadius="{StaticResource NaturalShadowBlurRadius_3}" 
+                    ShadowDepth="{StaticResource NaturalShadowDepth_3}"
+                    Opacity="{StaticResource NaturalShadowOpacity_3}"
+                    Color="{StaticResource NaturalShadowColor_3}"
+                    Direction="{DynamicResource DirectionBottomRight}"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- ستايل الظل المسطح -->
+    <Style x:Key="CustomShadowFlatStyle_1" TargetType="Control">
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect 
+                    BlurRadius="{DynamicResource FlatShadowBlurRadius_1}" 
+                    ShadowDepth="{DynamicResource FlatShadowDepth_1}"
+                    Opacity="{DynamicResource FlatShadowOpacity_1}"
+                    Color="{DynamicResource FlatShadowColor_1}"
+                    Direction="{DynamicResource DirectionBottomRight}"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CustomShadowFlatStyle_1" TargetType="Control">
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect 
+                    BlurRadius="{StaticResource FlatShadowBlurRadius_1}" 
+                    ShadowDepth="{StaticResource FlatShadowDepth_1}"
+                    Opacity="{StaticResource FlatShadowOpacity_1}"
+                    Color="{StaticResource FlatShadowColor_1}"
+                    Direction="{DynamicResource DirectionBottomRight}"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CustomShadowFlatStyle_2" TargetType="Control">
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect 
+                    BlurRadius="{StaticResource FlatShadowBlurRadius_2}" 
+                    ShadowDepth="{StaticResource FlatShadowDepth_2}"
+                    Opacity="{StaticResource FlatShadowOpacity_2}"
+                    Color="{StaticResource FlatShadowColor_2}"
+                    Direction="{DynamicResource DirectionBottomRight}"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CustomShadowFlatStyle_3" TargetType="Control">
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect 
+                    BlurRadius="{StaticResource FlatShadowBlurRadius_3}" 
+                    ShadowDepth="{StaticResource FlatShadowDepth_3}"
+                    Opacity="{StaticResource FlatShadowOpacity_3}"
+                    Color="{StaticResource FlatShadowColor_3}"
+                    Direction="{DynamicResource DirectionBottomRight}"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- ستايل الظل ثلاثي الأبعاد -->
+    <Style x:Key="CustomShadow3DStyle" TargetType="Control">
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect 
+                    BlurRadius="{DynamicResource ThreeDShadowBlurRadius_1}" 
+                    ShadowDepth="{DynamicResource ThreeDShadowDepth_1}"
+                    Opacity="{DynamicResource ThreeDShadowOpacity_1}"
+                    Color="{DynamicResource ThreeDShadowColor_1}"
+                    Direction="{DynamicResource DirectionBottomRight}"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CustomShadow3DStyle_1" TargetType="Control">
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect 
+                    BlurRadius="{StaticResource ThreeDShadowBlurRadius_1}" 
+                    ShadowDepth="{StaticResource ThreeDShadowDepth_1}"
+                    Opacity="{StaticResource ThreeDShadowOpacity_1}"
+                    Color="{StaticResource ThreeDShadowColor_1}"
+                    Direction="{DynamicResource DirectionBottomRight}"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CustomShadow3DStyle_2" TargetType="Control">
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect 
+                    BlurRadius="{StaticResource ThreeDShadowBlurRadius_2}" 
+                    ShadowDepth="{StaticResource ThreeDShadowDepth_2}"
+                    Opacity="{StaticResource ThreeDShadowOpacity_2}"
+                    Color="{StaticResource ThreeDShadowColor_2}"
+                    Direction="{DynamicResource DirectionBottomRight}"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CustomShadow3DStyle_3" TargetType="Control">
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect 
+                    BlurRadius="{StaticResource ThreeDShadowBlurRadius_3}" 
+                    ShadowDepth="{StaticResource ThreeDShadowDepth_32}"
+                    Opacity="{StaticResource ThreeDShadowOpacity_3}"
+                    Color="{StaticResource ThreeDShadowColor_3}"
+                    Direction="{DynamicResource DirectionBottomRight}"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>
