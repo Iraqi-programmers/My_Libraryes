@@ -17,10 +17,16 @@
     <Page Update="CustomControls\CustomGlows\GlowResources.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="CustomControls\CustomLabels\CustomLabelStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="CustomControls\CustomShadows\CustomShadowStyles.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="CustomControls\CustomShadows\ShadowResources.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="CustomControls\CustomTextBoxs\CustomTextBoxStyles.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

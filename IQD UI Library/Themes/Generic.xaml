@@ -1,6 +1,6 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
-                   xmlns:local="clr-namespace:IQD_UI_Library"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                    xmlns:local="clr-namespace:IQD_UI_Library"
                     >
 
     <ResourceDictionary.MergedDictionaries>
@@ -12,11 +12,11 @@
         <ResourceDictionary Source="/IQD_UI_Library;component/Styles/TextBoxStyles.xaml"/>
 
         <!-- الظل -->
-        <!--<ResourceDictionary Source="/IQD_UI_Library;component/CustomControls/CustomShados/ShadowResources.xaml"/>-->
         <ResourceDictionary Source="/IQD_UI_Library;component/CustomControls/CustomShadows/CustomShadowStyles.xaml"/>
         <!-- التوهج -->
-        <!--<ResourceDictionary Source="/IQD_UI_Library;component/CustomControls/CustomGlows/GlowResources.xaml"/>-->
         <ResourceDictionary Source="/IQD_UI_Library;component/CustomControls/CustomGlows/CustomGlowStyles.xaml"/>
+        <!-- الليبل -->
+        <ResourceDictionary Source="/IQD_UI_Library;component/CustomControls/CustomLabels/CustomLabelStyles.xaml"/>
 
     </ResourceDictionary.MergedDictionaries>
 
