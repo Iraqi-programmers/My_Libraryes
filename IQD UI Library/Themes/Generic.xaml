@@ -12,10 +12,10 @@
         <ResourceDictionary Source="/IQD_UI_Library;component/Styles/TextBoxStyles.xaml"/>
 
         <!-- الظل -->
-        <ResourceDictionary Source="/IQD_UI_Library;component/CustomControls/CustomShados/ShadowResources.xaml"/>
-        <ResourceDictionary Source="/IQD_UI_Library;component/CustomControls/CustomShados/CustomShadowStyles.xaml"/>
+        <!--<ResourceDictionary Source="/IQD_UI_Library;component/CustomControls/CustomShados/ShadowResources.xaml"/>-->
+        <ResourceDictionary Source="/IQD_UI_Library;component/CustomControls/CustomShadows/CustomShadowStyles.xaml"/>
         <!-- التوهج -->
-        <ResourceDictionary Source="/IQD_UI_Library;component/CustomControls/CustomGlows/GlowResources.xaml"/>
+        <!--<ResourceDictionary Source="/IQD_UI_Library;component/CustomControls/CustomGlows/GlowResources.xaml"/>-->
         <ResourceDictionary Source="/IQD_UI_Library;component/CustomControls/CustomGlows/CustomGlowStyles.xaml"/>
 
     </ResourceDictionary.MergedDictionaries>
