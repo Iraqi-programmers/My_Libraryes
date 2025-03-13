@@ -9,7 +9,6 @@
         Background="Transparent"
         Topmost="True"
         Width="150" Height="150"
-        Loaded="Window_Loaded"
          WindowStartupLocation="CenterScreen" 
         ResizeMode="NoResize"
         >
