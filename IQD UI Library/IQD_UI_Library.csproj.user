@@ -2,12 +2,12 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
-
     <Compile Update="UserControls\IQD_BorderAnimation.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-
-
+    <Compile Update="UserControls\IQD_LoadingControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UserControls\IQD_MessageBox.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -24,9 +24,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="CustomControls\CustomShadows\ShadowResources.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="CustomControls\CustomTextBoxs\CustomTextBoxStyles.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
