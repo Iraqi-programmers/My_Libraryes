@@ -9,10 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="User Controls\**" />
+    <EmbeddedResource Remove="User Controls\**" />
+    <None Remove="User Controls\**" />
+    <Page Remove="User Controls\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="CustomControls\CusromBorder\" />
-
-
-    <Folder Include="User Controls\" />
 
   </ItemGroup>
 
