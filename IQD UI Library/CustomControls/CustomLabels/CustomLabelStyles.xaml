@@ -1,0 +1,54 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- ستايل ثلاثي الأبعاد الى الليبل  -->
+    <Style x:Key="Label3DStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Foreground" Value="{DynamicResource SecundaryBlueColor}"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="Margin" Value="5,0,0,0"/>
+
+        <!-- تأثير الظل الثلاثي الأبعاد (الظل العادي) -->
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="Black" BlurRadius="15" ShadowDepth="8" Opacity="0.6"/>
+            </Setter.Value>
+        </Setter>
+
+        <!-- التأثيرات العادية (تضخيم النص والتحجيم) -->
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <TransformGroup>
+                    <ScaleTransform x:Name="scaleTransform" ScaleX="1" ScaleY="1"/>
+                    <RotateTransform Angle="0" CenterX="0.5" CenterY="0.5"/>
+                </TransformGroup>
+            </Setter.Value>
+        </Setter>
+
+        <!-- تأثيرات التفاعل عند تمرير الماوس (زيادة الحجم و الظل) -->
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <!-- تكبير النص عند مرور الماوس -->
+                <Setter Property="RenderTransform">
+                    <Setter.Value>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
+                            <RotateTransform Angle="0" CenterX="0.5" CenterY="0.5"/>
+                        </TransformGroup>
+                    </Setter.Value>
+                </Setter>
+
+                <!-- زيادة الظل عند مرور الماوس -->
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect Color="Black" BlurRadius="20" ShadowDepth="10" Opacity="0.8"/>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>
