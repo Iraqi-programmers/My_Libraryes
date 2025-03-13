@@ -5,9 +5,11 @@
     <Compile Update="UserControls\IQD_BorderAnimation.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+
     <Compile Update="UserControls\IQD_LoadingControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+
     <Compile Update="UserControls\IQD_MessageBox.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
