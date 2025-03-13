@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace IQD_UI_Library.UserControls
+namespace IQD_UI_Library
 {
     /// <summary>
     /// Interaction logic for IQDBorderAnimation.xaml

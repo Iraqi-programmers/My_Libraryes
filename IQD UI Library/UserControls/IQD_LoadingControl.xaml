@@ -1,0 +1,66 @@
+﻿<Window x:Class="IQD_UI_Library.IQD_LoadingControl"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        Topmost="True"
+        Width="150" Height="150"
+        Loaded="Window_Loaded"
+         WindowStartupLocation="CenterScreen" 
+        ResizeMode="NoResize"
+        >
+    <Window.Resources>
+        <Storyboard x:Key="RotateAnimation" RepeatBehavior="Forever">
+            <!-- دوران الدوائر -->
+            <DoubleAnimation Storyboard.TargetName="Rotate1" Storyboard.TargetProperty="Angle"
+                             From="0" To="360" Duration="0:0:10"/>
+            <DoubleAnimation Storyboard.TargetName="Rotate2" Storyboard.TargetProperty="Angle"
+                             From="120" To="480" Duration="0:0:10"/>
+            <DoubleAnimation Storyboard.TargetName="Rotate3" Storyboard.TargetProperty="Angle"
+                             From="240" To="600" Duration="0:0:10"/>
+
+            <!-- تأثير التلاشي -->
+            <DoubleAnimation Storyboard.TargetName="Ellipse1" Storyboard.TargetProperty="Opacity"
+                             From="0" To="1" Duration="0:0:2"/>
+            <DoubleAnimation Storyboard.TargetName="Ellipse2" Storyboard.TargetProperty="Opacity"
+                             From="0" To="1" Duration="0:0:2"/>
+            <DoubleAnimation Storyboard.TargetName="Ellipse3" Storyboard.TargetProperty="Opacity"
+                             From="0" To="1" Duration="0:0:2"/>
+        </Storyboard>
+    </Window.Resources>
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource RotateAnimation}"/>
+        </EventTrigger>
+    </Window.Triggers>
+
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Canvas Width="100" Height="100">
+            <!-- ورقه 1 -->
+            <Ellipse x:Name="Ellipse1" Width="30" Height="60" Canvas.Left="35" Canvas.Top="20" Fill="#FF4CAF50">
+                <Ellipse.RenderTransform>
+                    <RotateTransform x:Name="Rotate1" Angle="0" CenterX="15" CenterY="30"/>
+                </Ellipse.RenderTransform>
+            </Ellipse>
+
+            <!-- ورقه 2 -->
+            <Ellipse x:Name="Ellipse2" Width="30" Height="60" Canvas.Left="35" Canvas.Top="20" Fill="#FF03A9F4">
+                <Ellipse.RenderTransform>
+                    <RotateTransform x:Name="Rotate2" Angle="120" CenterX="15" CenterY="30"/>
+                </Ellipse.RenderTransform>
+            </Ellipse>
+
+            <!-- ورقه 3 -->
+            <Ellipse x:Name="Ellipse3" Width="30" Height="60" Canvas.Left="35" Canvas.Top="20" Fill="#FFFFC107">
+                <Ellipse.RenderTransform>
+                    <RotateTransform x:Name="Rotate3" Angle="240" CenterX="15" CenterY="30"/>
+                </Ellipse.RenderTransform>
+            </Ellipse>
+        </Canvas>
+    </Grid>
+</Window>
