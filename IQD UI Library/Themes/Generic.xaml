@@ -17,6 +17,10 @@
         <ResourceDictionary Source="/IQD_UI_Library;component/CustomControls/CustomGlows/CustomGlowStyles.xaml"/>
         <!-- الليبل -->
         <ResourceDictionary Source="/IQD_UI_Library;component/CustomControls/CustomLabels/CustomLabelStyles.xaml"/>
+        <!-- الكارتات -->
+        <ResourceDictionary Source="/IQD_UI_Library;component/CustomControls/CustomCards/CustomCardStyles.xaml"/>
+        <!-- التكست بلوك -->
+        <ResourceDictionary Source="/IQD_UI_Library;component/CustomControls/CustomTextBlocks/CustomTextBlockStyles.xaml"/>
 
     </ResourceDictionary.MergedDictionaries>
 

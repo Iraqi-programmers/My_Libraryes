@@ -1,8 +1,21 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+    <!-- ستايل الليبل مع الظل -->
+    <Style TargetType="Label" x:Key="CustomLabelWithShadowStyle">
+        <Setter Property="FontSize" Value="28"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="Black" BlurRadius="8" ShadowDepth="7" Opacity="0.5"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
     <!-- ستايل ثلاثي الأبعاد الى الليبل  -->
-    <Style x:Key="Label3DStyle" TargetType="Label">
+    <Style x:Key="CustomLabel3DStyle" TargetType="Label">
         <Setter Property="FontSize" Value="24"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="Foreground" Value="{DynamicResource SecundaryBlueColor}"/>

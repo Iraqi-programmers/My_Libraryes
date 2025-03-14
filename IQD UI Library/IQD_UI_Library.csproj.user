@@ -5,14 +5,18 @@
     <Compile Update="UserControls\IQD_BorderAnimation.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-
+    <Compile Update="UserControls\IQD_FinancialAnalyzerCard.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UserControls\IQD_LoadingControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-
     <Compile Update="UserControls\IQD_MessageBox.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Page Update="CustomControls\CustomCards\CustomCardStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="CustomControls\CustomGlows\CustomGlowStyles.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -26,6 +30,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="CustomControls\CustomShadows\ShadowResources.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="CustomControls\CustomTextBlocks\CustomTextBlockStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserControls\IQD_FinancialAnalyzerCard.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
