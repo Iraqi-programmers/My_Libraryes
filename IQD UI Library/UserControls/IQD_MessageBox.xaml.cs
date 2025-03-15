@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace IQD_UI_Library
 {
@@ -11,8 +12,37 @@ namespace IQD_UI_Library
         {
             InitializeComponent();
             DataContext = this; // ربط البيانات
+            Loaded += (s, e) => AdjustMessageBoxSize();
+
 
         }
+
+        private void AdjustMessageBoxSize()
+        {
+            
+            int lineCount = GetLineCount(MessageText.Text);
+
+            if (lineCount >= 4)
+            {
+                MessageScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+                MessageText.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+            }
+            else
+            {
+                MessageScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
+                MessageText.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
+            }
+        }
+
+        private int GetLineCount(string text)
+        {
+            if (string.IsNullOrEmpty(text))
+                return 0;
+
+            // حساب عدد الأسطر بناءً على الأحرف الجديدة (\n)
+            return text.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries).Length;
+        }
+
 
         // خصائص قابلة للربط
         public static readonly DependencyProperty BoxTitleProperty =
