@@ -1,22 +1,10 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
 
-namespace IQD_UI_Library.UserControls
+namespace IQD_UI_Library
 {
     public partial class IQD_FinancialAnalyzerCard : UserControl
     {
@@ -32,7 +20,11 @@ namespace IQD_UI_Library.UserControls
 
         public static readonly DependencyProperty GradientColor2Property =
             DependencyProperty.Register("GradientColor2", typeof(Color), typeof(IQD_FinancialAnalyzerCard),
-            new PropertyMetadata(Colors.DodgerBlue)); 
+            new PropertyMetadata(Colors.DodgerBlue));
+
+        public static readonly DependencyProperty TextProperty  =
+           DependencyProperty.Register(nameof(Text), typeof(string), typeof(IQD_FinancialAnalyzerCard),
+           new PropertyMetadata("التحليل المالي الذكي"));
 
         public Point StartPoint
         {
@@ -57,6 +49,13 @@ namespace IQD_UI_Library.UserControls
             get { return (Color)GetValue(GradientColor2Property); }
             set { SetValue(GradientColor2Property, value); }
         }
+
+        public string Text
+        {
+            get { return (string)GetValue(TextProperty ); }
+            set { SetValue(TextProperty , value); }
+        }
+
 
         public IQD_FinancialAnalyzerCard()
         {

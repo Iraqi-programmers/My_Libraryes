@@ -1,9 +1,9 @@
-﻿<UserControl x:Class="IQD_UI_Library.UserControls.IQD_FinancialAnalyzerCard"
+﻿<UserControl x:Class="IQD_UI_Library.IQD_FinancialAnalyzerCard"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:IQD_UI_Library.UserControls"
+             xmlns:local="clr-namespace:IQD_UI_Library"
              mc:Ignorable="d" 
              d:DesignHeight="120" d:DesignWidth="240">
 
@@ -27,7 +27,7 @@
                 <GradientStop Color="{Binding GradientColor2}" Offset="1"/>
             </LinearGradientBrush>
         </Border.Background>
-        <TextBlock Text="التحليل المالي الذكي" Style="{StaticResource CustomTextWithShadow_1}"/>
+        <TextBlock Text="{Binding Text}" Style="{StaticResource CustomTextWithShadow_1}"/>
     </Border>
 
 </UserControl>
