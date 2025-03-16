@@ -19,7 +19,7 @@ namespace IQD_UI_Library
 
         private void AdjustMessageBoxSize()
         {
-            
+
             int lineCount = GetLineCount(MessageText.Text);
 
             if (lineCount >= 4)
@@ -166,4 +166,3 @@ namespace IQD_UI_Library
 
 
 }
-

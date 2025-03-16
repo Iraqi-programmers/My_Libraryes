@@ -62,11 +62,7 @@ namespace IQD_UI_Library
             InitializeComponent();
         }
 
-        private void OpenFinancialAnalyzer(object sender, MouseButtonEventArgs e)
-        {
-            MessageBox.Show("تم فتح التحليل المالي الذكي!");
-        }
-
+     
         private void OnMouseEnter(object sender, MouseEventArgs e)
         {
             Border border = sender as Border;
