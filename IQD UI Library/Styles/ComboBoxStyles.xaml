@@ -17,7 +17,7 @@
             <Border x:Name="Border" 
                   Grid.ColumnSpan="2"
                   CornerRadius="5"
-                  BorderBrush="red"
+                  BorderBrush="DarkBlue"
                   BorderThickness="2" 
                   SnapsToDevicePixels="true">
             </Border>
@@ -62,7 +62,7 @@
 
     <Style x:Key="ComboBoxStyle1" TargetType="{x:Type ComboBox}">
         <Setter  Property="Height" Value="35" />
-        <Setter  Property="Width" Value="250" />
+        <Setter  Property="Width" Value="{Binding Width}" />
         <Setter  Property="Cursor" Value="Hand" />
         <Setter  Property="FontFamily" Value="Segoe UI" />
         <Setter  Property="FontSize" Value="11" />
@@ -90,14 +90,14 @@
                                         HorizontalAlignment="Left"
                                         IsEnabled="True"/>
                         <Label x:Name="watermark"
-                              VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                              VerticalAlignment="Center"
                               HorizontalAlignment="Left"
                               Foreground="{DynamicResource PrimaryTextColor}"
                               Visibility="Collapsed"
                               Padding="8 5 0 0"
                               Content="{TemplateBinding Tag}"
                              FontFamily="Segoe UI"
-                             FontSize="11"/>
+                             FontSize="20"/>
                         <TextBox x:Name="PART_EditableTextBox"
                                Template="{StaticResource ComboBoxTextBox}"
                                HorizontalAlignment="Left"
@@ -142,6 +142,8 @@
                             <MultiTrigger.Conditions>
                                 <Condition Property="Text" Value=""/>
                             </MultiTrigger.Conditions>
+                            <Setter Property="Visibility" Value="Visible" TargetName="watermark">
+                            </Setter>
                         </MultiTrigger>
                         <Trigger Property="HasItems" Value="False">
                             <Setter TargetName="DropDownBorder" Property="MinHeight" Value="95"/>

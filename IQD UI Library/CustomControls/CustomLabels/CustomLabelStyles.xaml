@@ -64,4 +64,18 @@
         </Style.Triggers>
     </Style>
 
+
+    <!-- ستايل الليبل مع الظل -->
+    <Style TargetType="Label" x:Key="CustomLabelWithShadow">
+        <Setter Property="FontSize" Value="28"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="Black" BlurRadius="8" ShadowDepth="7" Opacity="0.5"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>
