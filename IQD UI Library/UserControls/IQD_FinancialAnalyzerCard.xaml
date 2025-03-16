@@ -10,8 +10,7 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/IQD_UI_Library;component/CustomControls/CustomCards/CustomCardStyles.xaml"/>
-                <ResourceDictionary Source="/IQD_UI_Library;component/CustomControls/CustomTextBlocks/CustomTextBlockStyles.xaml"/>
+                <ResourceDictionary Source="/IQD_UI_Library;component/Themes/Generic.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -20,14 +19,15 @@
             MouseDown="OpenFinancialAnalyzer" 
             MouseEnter="OnMouseEnter"
             MouseLeave="OnMouseLeave">
-        <Border.Background>
+        <Border.Background >
+
             <LinearGradientBrush StartPoint="{Binding StartPoint, RelativeSource={RelativeSource AncestorType=UserControl}}" 
-                                 EndPoint="{Binding EndPoint, RelativeSource={RelativeSource AncestorType=UserControl}}">
-                <GradientStop Color="{Binding GradientColor1}" Offset="0"/>
-                <GradientStop Color="{Binding GradientColor2}" Offset="1"/>
+                      EndPoint="{Binding EndPoint, RelativeSource={RelativeSource AncestorType=UserControl}}">
+                <GradientStop Color="{Binding GradientColor1, RelativeSource={RelativeSource AncestorType=UserControl}}" Offset="0"/>
+                <GradientStop Color="{Binding GradientColor2, RelativeSource={RelativeSource AncestorType=UserControl}}" Offset="1"/>
             </LinearGradientBrush>
         </Border.Background>
-        <TextBlock Text="{Binding Text}" Style="{StaticResource CustomTextWithShadow_1}"/>
+        <TextBlock Text="{Binding Text, RelativeSource={RelativeSource AncestorType=UserControl}}" Style="{StaticResource CustomTextWithShadow_1}"/>
     </Border>
 
 </UserControl>
