@@ -130,7 +130,7 @@
                             <Label x:Name="watermark"
                              VerticalAlignment="Center"
                              HorizontalAlignment="Left"
-                             Foreground="Black"
+                             Foreground="{StaticResource PrimaryTextColor}"
                              Visibility="Collapsed"
                              Padding="5 0 20 5"
                              Content="{TemplateBinding Tag}"
