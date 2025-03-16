@@ -16,8 +16,22 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Images\Erorr.gif" />
+    <None Remove="Images\Info.gif" />
+    <None Remove="Images\Qustion.gif" />
+    <None Remove="Images\Worring.gif" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="CustomControls\CusromBorder\" />
 
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\Erorr.gif" />
+    <Resource Include="Images\Info.gif" />
+    <Resource Include="Images\Qustion.gif" />
+    <Resource Include="Images\Worring.gif" />
   </ItemGroup>
 
   <ItemGroup>
