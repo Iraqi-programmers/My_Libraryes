@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Images\calendar.png" />
     <None Remove="Images\Erorr.gif" />
     <None Remove="Images\Info.gif" />
     <None Remove="Images\Qustion.gif" />
@@ -28,6 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\calendar.png" />
     <Resource Include="Images\Erorr.gif" />
     <Resource Include="Images\Info.gif" />
     <Resource Include="Images\Qustion.gif" />
