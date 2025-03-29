@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Abu_Sanad\\Desktop\\RealProject\\IQD UI Library\\",
+  "WorkspaceRootPath": "C:\\Users\\Abu_Sanad\\Documents\\GitHub\\WPF_UI_Library\\IQD UI Library\\",
   "Documents": [],
   "DocumentGroupContainers": [
     {
@@ -18,6 +18,18 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
             }
           ]
         }

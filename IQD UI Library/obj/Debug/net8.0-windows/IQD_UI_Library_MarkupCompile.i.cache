@@ -4,17 +4,17 @@
 library
 C#
 .cs
-C:\Users\Abu_Sanad\Desktop\RealProject\IQD UI Library\obj\Debug\net8.0-windows\
+C:\Users\Abu_Sanad\Documents\GitHub\WPF_UI_Library\IQD UI Library\obj\Debug\net8.0-windows\
 IQD_UI_Library
 none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
 
-81604581885
+221320667055
 
-51758107533
-1981839832580
-Styles\ButtonStyles.xaml;Styles\ButtonStyles3D.xaml;Styles\RadioButtonStyles.xaml;Styles\TextBoxes3D.xaml;Styles\TextBoxStyles.xaml;Themes\DarkTheme.xaml;Themes\Generic.xaml;Themes\LightTheme.xaml;
+10-1570467750
+198-344842731
+CustomControls\CustomCards\CustomCardStyles.xaml;CustomControls\CustomGlows\CustomGlowStyles.xaml;CustomControls\CustomGlows\GlowResources.xaml;CustomControls\CustomLabels\CustomLabelStyles.xaml;CustomControls\CustomShadows\CustomShadowStyles.xaml;CustomControls\CustomShadows\ShadowResources.xaml;CustomControls\CustomTextBlocks\CustomTextBlockStyles.xaml;CustomControls\CustomTextBoxs\CustomTextBoxStyles.xaml;Styles\ButtonStyles.xaml;Styles\ButtonStyles3D.xaml;Styles\CheckBoxStyle.xaml;Styles\ComboBoxStyles.xaml;Styles\RadioButtonStyles.xaml;Styles\TextBoxes3D.xaml;Styles\TextBoxStyles.xaml;Themes\DarkTheme.xaml;Themes\Generic.xaml;Themes\LightTheme.xaml;UserControls\IQD_BorderAnimation.xaml;UserControls\IQD_FinancialAnalyzerCard.xaml;UserControls\IQD_LoadingControl.xaml;UserControls\IQD_MessageBox.xaml;
 
-False
+True
 
