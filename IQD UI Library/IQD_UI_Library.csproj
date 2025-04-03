@@ -29,6 +29,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="MahApps.Metro.IconPacks.Material" Version="5.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Images\calendar.png" />
     <Resource Include="Images\Erorr.gif" />
     <Resource Include="Images\Info.gif" />
