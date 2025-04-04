@@ -1,7 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                      xmlns:local="clr-namespace:IQD_UI_Library"
-                     xmlns:iconpacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
 
                     >
 
@@ -209,42 +208,5 @@
         </Setter>
     </Style>
 
-    <!--لزر الاجراءات-->
-    <Style x:Key="IconButton" TargetType="Button">
-        <!-- الخصائص الأساسية -->
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Padding" Value="8"/>
-        <Setter Property="Width" Value="32"/>
-        <Setter Property="Height" Value="32"/>
-        <Setter Property="Cursor" Value="Hand"/>
-
-        <!-- تعريف محتوى الزر (الأيقونة) -->
-        <Setter Property="Content">
-            <Setter.Value>
-                <iconpacks:PackIconMaterial Kind="Eye" Width="16" Height="16" Foreground="#0078D7"/>
-            </Setter.Value>
-        </Setter>
-
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}" 
-             CornerRadius="4"
-             BorderThickness="1"
-             BorderBrush="{TemplateBinding Foreground}">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#F0F0F0"/>
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-
-
+  
 </ResourceDictionary>
