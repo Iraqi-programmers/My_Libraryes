@@ -14,6 +14,9 @@
     <Compile Update="UserControls\IQD_MessageBox.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="UserControls\IQD_UC_TextBox_PassTextBox.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Page Update="CustomControls\CustomCards\CustomCardStyles.xaml">
       <SubType>Designer</SubType>
     </Page>
