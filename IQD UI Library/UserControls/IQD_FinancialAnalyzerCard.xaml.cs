@@ -65,7 +65,7 @@ namespace IQD_UI_Library
      
         private void OnMouseEnter(object sender, MouseEventArgs e)
         {
-            Border border = sender as Border;
+            Border border = (Border)sender;
             if (border != null)
             {
                 border.RenderTransform = new ScaleTransform(1.05, 1.05);
@@ -74,7 +74,7 @@ namespace IQD_UI_Library
 
         private void OnMouseLeave(object sender, MouseEventArgs e)
         {
-            Border border = sender as Border;
+            Border border = (Border)sender;
             if (border != null)
             {
                 border.RenderTransform = new ScaleTransform(1, 1);
