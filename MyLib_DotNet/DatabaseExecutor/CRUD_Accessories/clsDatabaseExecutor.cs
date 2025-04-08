@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using Microsoft.Data.SqlClient;
+using Newtonsoft.Json;
 
 namespace MyLib_DotNet.DatabaseExecutor.CRUD_Accessories
 {
@@ -10,7 +11,7 @@ namespace MyLib_DotNet.DatabaseExecutor.CRUD_Accessories
 
         protected static object? _ExecuteScalar(string query, SqlParameter[]? parameters = null, CommandType type = CommandType.Text, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
             => _ExecuteWithRetry(() => __ExecuteCommand(query, type, parameters, cmd => cmd.ExecuteScalar()), retryAttempts, retryDelayMilliseconds, nameof(_ExecuteScalar));
-        
+
         protected static Dictionary<string, object>? _ExecuteSingleRecord(string query, SqlParameter[]? parameters = null, CommandType type = CommandType.Text, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
         {
             return _ExecuteWithRetry(() =>
@@ -36,29 +37,26 @@ namespace MyLib_DotNet.DatabaseExecutor.CRUD_Accessories
             }, retryAttempts, retryDelayMilliseconds, nameof(_ExecuteSingleRecord));
         }
 
-        //protected static List<object[]>? _ExecuteReader(string query, SqlParameter[]? parameters = null, CommandType type = CommandType.Text, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
-        //{
-        //    return _ExecuteWithRetry(() =>
-        //    {
-        //        return __ExecuteCommand(query, type, parameters, cmd =>
-        //        {
-        //            List<object[]> result = new List<object[]>();
-        //            using (SqlDataReader reader = cmd.ExecuteReader())
-        //            {
-        //                while (reader.Read())
-        //                {
-        //                    object[] row = new object[reader.FieldCount];
-
-        //                    for (int i = 0; i < reader.FieldCount; i++)
-        //                        row[i] = reader.IsDBNull(i) ? DBNull.Value : reader.GetValue(i);
-
-        //                    result.Add(row);
-        //                }
-        //            }
-        //            return result;
-        //        });
-        //    }, retryAttempts, retryDelayMilliseconds, nameof(_ExecuteReader));
-        //}
+        protected static T? _ExecuteSingleRecord<T>(string query, SqlParameter[]? parameters = null, CommandType type = CommandType.Text, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500) where T : class
+        {
+            return _ExecuteWithRetry(() =>
+            {
+                return __ExecuteCommand(query, type, parameters, cmd =>
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            object[] row = new object[reader.FieldCount];
+                            reader.GetValues(row);
+                            var json = JsonConvert.SerializeObject(row);
+                            return JsonConvert.DeserializeObject<T>(json);
+                        }
+                        return null;
+                    }
+                });
+            }, retryAttempts, retryDelayMilliseconds, nameof(_ExecuteSingleRecord));
+        }
 
         protected static List<Dictionary<string, object>>? _ExecuteReader(string query, SqlParameter[]? parameters = null, CommandType type = CommandType.Text, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
         {
@@ -86,26 +84,32 @@ namespace MyLib_DotNet.DatabaseExecutor.CRUD_Accessories
             }, retryAttempts, retryDelayMilliseconds, nameof(_ExecuteReader));
         }
 
-        //protected static List<T>? _ExecuteReader<T>(string query, SqlParameter[]? parameters = null, CommandType type = CommandType.Text, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500) //where T : class 
-        //{
-        //    return _ExecuteWithRetry(() =>
-        //    {
-        //        return __ExecuteCommand(query, type, parameters, cmd =>
-        //        {
-        //            List<T> result = new List<T>();
-        //            using (SqlDataReader reader = cmd.ExecuteReader())
-        //            {
-        //                while (reader.Read())
-        //                {
-        //                    object[] row = new object[reader.FieldCount];
-        //                    reader.GetValues(row);
-        //                    result.Add(JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(row)));
-        //                }
-        //            }
-        //            return result;
-        //        });
-        //    }, retryAttempts, retryDelayMilliseconds, nameof(_ExecuteReader));
-        //}
+        protected static List<T>? _ExecuteReader<T>(string query, SqlParameter[]? parameters = null, CommandType type = CommandType.Text, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500) where T : class
+        {
+            return _ExecuteWithRetry(() =>
+            {
+                return __ExecuteCommand(query, type, parameters, cmd =>
+                {
+                    List<T> results = new List<T>();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var row = new object[reader.FieldCount];
+                            reader.GetValues(row);
+                            var json = JsonConvert.SerializeObject(row);
+                            var item = JsonConvert.DeserializeObject<T>(json);
+
+                            if (item != null)
+                            {
+                                results.Add(item);
+                            }
+                        }
+                    }
+                    return results;
+                });
+            }, retryAttempts, retryDelayMilliseconds, nameof(_ExecuteReader));
+        }
 
         protected static DataTable? _ExecuteDataAdapter(string query, SqlParameter[]? parameters = null, CommandType type = CommandType.Text, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
         {
@@ -156,7 +160,7 @@ namespace MyLib_DotNet.DatabaseExecutor.CRUD_Accessories
             }, retryAttempts, retryDelayMilliseconds, nameof(_ExecuteTransaction));
         }
 
-        private static T __ExecuteCommand<T>(string query, CommandType type, SqlParameter[]? parameters, Func<SqlCommand, T> commandExecutor, SqlConnection? externalConnection = null, SqlTransaction? externalTransaction = null)
+        private static T? __ExecuteCommand<T>(string query, CommandType type, SqlParameter[]? parameters, Func<SqlCommand, T> commandExecutor, SqlConnection? externalConnection = null, SqlTransaction? externalTransaction = null)
         {
             _ValidateQuery(query);
             SqlConnection connection = externalConnection ?? new SqlConnection(_connectionString);
@@ -188,176 +192,185 @@ namespace MyLib_DotNet.DatabaseExecutor.CRUD_Accessories
             return command;
         }
     }
+
     public partial class clsDatabaseExecutor
     {
         protected static async Task<int?> _ExecuteNonQueryAsync(string query, SqlParameter[]? parameters = null, CommandType type = CommandType.Text, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
-            => await _ExecuteWithRetryAsync(() => __ExecuteCommandAsync(query, type, parameters, async cmd => await cmd.ExecuteNonQueryAsync()), retryAttempts, retryDelayMilliseconds, nameof(_ExecuteNonQueryAsync));
+            => await _ExecuteWithRetryAsync(() => __ExecuteCommandAsync(query, type, parameters, async cmd => await cmd.ExecuteNonQueryAsync().ConfigureAwait(false)), retryAttempts, retryDelayMilliseconds, nameof(_ExecuteNonQueryAsync)).ConfigureAwait(false);
 
         protected static async Task<object?> _ExecuteScalarAsync(string query, SqlParameter[]? parameters = null, CommandType type = CommandType.Text, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
-            => await _ExecuteWithRetryAsync(() => __ExecuteCommandAsync(query, type, parameters, async cmd => await cmd.ExecuteScalarAsync()), retryAttempts, retryDelayMilliseconds, nameof(_ExecuteScalarAsync));
+            => await _ExecuteWithRetryAsync(() => __ExecuteCommandAsync(query, type, parameters, async cmd => await cmd.ExecuteScalarAsync().ConfigureAwait(false)), retryAttempts, retryDelayMilliseconds, nameof(_ExecuteScalarAsync)).ConfigureAwait(false);
 
         protected static async Task<Dictionary<string, object>?> _ExecuteSingleRecordAsync(string query, SqlParameter[]? parameters = null, CommandType type = CommandType.Text, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
-        {
-            return await _ExecuteWithRetryAsync(async () =>
-            {
-                return await __ExecuteCommandAsync(query, type, parameters, async cmd =>
-                {
-                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
-                    {
-                        if (await reader.ReadAsync())
-                        {
-                            Dictionary<string, object> row = new Dictionary<string, object>();
-                            for (int i = 0; i < reader.FieldCount; i++)
-                            {
-                                string columnName = reader.GetName(i);
-                                object value = await reader.IsDBNullAsync(i) ? DBNull.Value : reader.GetValue(i);
-                                row[columnName] = value;
-                            }
-                            return row;
-                        }
-                    }
-                    return null;
-                });
-            }, retryAttempts, retryDelayMilliseconds, nameof(_ExecuteSingleRecordAsync));
-        }
+            => await _ExecuteWithRetryAsync(async () => await __ExecuteCommandAsync(query, type, parameters, async cmd => await ReadSingleRecordAsync(cmd)), retryAttempts, retryDelayMilliseconds, nameof(_ExecuteSingleRecordAsync)).ConfigureAwait(false);
 
-        //protected static async Task<List<object[]>?> _ExecuteReaderAsync(string query, SqlParameter[]? parameters = null, CommandType type = CommandType.Text, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
-        //{
-        //    return await _ExecuteWithRetryAsync(async () =>
-        //    {
-        //        return await __ExecuteCommandAsync(query, type, parameters, async cmd =>
-        //        {
-        //            List<object[]> result = new List<object[]>();
-        //            using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
-        //            {
-        //                while (await reader.ReadAsync())
-        //                {
-        //                    object[] row = new object[reader.FieldCount];
-
-        //                    for (int i = 0; i < reader.FieldCount; i++)
-        //                        row[i] = reader.IsDBNull(i) ? DBNull.Value : reader.GetValue(i);
-
-        //                    result.Add(row);
-        //                }
-        //            }
-        //            return result;
-        //        });
-        //    }, retryAttempts, retryDelayMilliseconds, nameof(_ExecuteReaderAsync));
-        //}
+        protected static async Task<T?> _ExecuteSingleRecordAsync<T>(string query, SqlParameter[]? parameters = null, CommandType type = CommandType.Text, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500) where T : class
+            => await _ExecuteWithRetryAsync(async () => await __ExecuteCommandAsync(query, type, parameters, async cmd => await ReadSingleRecordAsync<T>(cmd)), retryAttempts, retryDelayMilliseconds, nameof(_ExecuteSingleRecordAsync)).ConfigureAwait(false);
 
         protected static async Task<List<Dictionary<string, object>>?> _ExecuteReaderAsync(string query, SqlParameter[]? parameters = null, CommandType type = CommandType.Text, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
-        {
-            return await _ExecuteWithRetryAsync(async () =>
-            {
-                return await __ExecuteCommandAsync(query, type, parameters, async cmd =>
-                {
-                    List<Dictionary<string, object>> result = new List<Dictionary<string, object>>();
-                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
-                    {
-                        while (await reader.ReadAsync())
-                        {
-                            Dictionary<string, object> row = new Dictionary<string, object>();
-                            for (int i = 0; i < reader.FieldCount; i++)
-                            {
-                                string columnName = reader.GetName(i);
-                                object value = await reader.IsDBNullAsync(i) ? DBNull.Value : reader.GetValue(i);
-                                row[columnName] = value;
-                            }
-                            result.Add(row);
-                        }
-                    }
-                    return result;
-                });
-            }, retryAttempts, retryDelayMilliseconds, nameof(_ExecuteReaderAsync));
-        }
+            => await _ExecuteWithRetryAsync(async () => await __ExecuteCommandAsync(query, type, parameters, async cmd => await ReadMultipleRecordsAsync(cmd)), retryAttempts, retryDelayMilliseconds, nameof(_ExecuteReaderAsync)).ConfigureAwait(false);
 
-        //protected static async Task<List<T>?> _ExecuteReaderAsync<T>(string query, SqlParameter[]? parameters = null, CommandType type = CommandType.Text, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
-        //{
-        //    return await _ExecuteWithRetryAsync(async () =>
-        //    {
-        //        return await __ExecuteCommandAsync(query, type, parameters, async cmd =>
-        //        {
-        //            List<T> result = new List<T>();
-        //            using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
-        //            {
-        //                while (await reader.ReadAsync())
-        //                {
-        //                    object[] row = new object[reader.FieldCount];
-        //                    reader.GetValues(row);
-        //                    result.Add(JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(row)));
-        //                }
-        //            }
-        //            return result;
-        //        });
-        //    }, retryAttempts, retryDelayMilliseconds, nameof(_ExecuteReaderAsync));
-        //}
+        protected static async Task<List<T>?> _ExecuteReaderAsync<T>(string query, SqlParameter[]? parameters = null, CommandType type = CommandType.Text, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500) where T : class
+            => await _ExecuteWithRetryAsync(async () => await __ExecuteCommandAsync(query, type, parameters, async cmd => await ReadMultipleRecordsAsync<T>(cmd)), retryAttempts, retryDelayMilliseconds, nameof(_ExecuteReaderAsync)).ConfigureAwait(false);
 
         protected static async Task<DataTable?> _ExecuteDataAdapterAsync(string query, SqlParameter[]? parameters = null, CommandType type = CommandType.Text, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
-        {
-            return await _ExecuteWithRetryAsync(async () =>
-            {
-                return await __ExecuteCommandAsync(query, type, parameters, async cmd =>
-                {
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
-                    {
-                        DataTable dataTable = new DataTable();
-                        await Task.Run(() => adapter.Fill(dataTable));
-                        return dataTable;
-                    }
-                });
-            }, retryAttempts, retryDelayMilliseconds, nameof(_ExecuteDataAdapterAsync));
-        }
+            => await _ExecuteWithRetryAsync(async () => await __ExecuteCommandAsync(query, type, parameters, async cmd => await FillDataTableAsync(cmd)), retryAttempts, retryDelayMilliseconds, nameof(_ExecuteDataAdapterAsync)).ConfigureAwait(false);
 
         protected static async Task<bool> _ExecuteTransactionAsync(List<(string query, SqlParameter[] parameters, CommandType type)> commands, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
+            => await _ExecuteWithRetryAsync(async () => await ExecuteTransactionCommandsAsync(commands), retryAttempts, retryDelayMilliseconds, nameof(_ExecuteTransactionAsync)).ConfigureAwait(false);
+
+        #region Helper Methods
+        private static async Task<Dictionary<string, object>?> ReadSingleRecordAsync(SqlCommand cmd)
         {
-            return await _ExecuteWithRetryAsync(async () =>
+            using (var reader = await cmd.ExecuteReaderAsync().ConfigureAwait(false))
             {
-                using (SqlConnection connection = new SqlConnection(_connectionString))
+                if (await reader.ReadAsync().ConfigureAwait(false))
                 {
-                    await connection.OpenAsync();
-                    using (SqlTransaction transaction = connection.BeginTransaction())
+                    var row = new Dictionary<string, object>();
+                    for (int i = 0; i < reader.FieldCount; i++)
                     {
-                        try
+                        string columnName = reader.GetName(i);
+                        object value = await reader.IsDBNullAsync(i) ? DBNull.Value : reader.GetValue(i);
+                        row[columnName] = value;
+                    }
+                    return row;
+                }
+            }
+            return null;
+        }
+
+        private static async Task<T?> ReadSingleRecordAsync<T>(SqlCommand cmd) where T : class
+        {
+            using (var reader = await cmd.ExecuteReaderAsync().ConfigureAwait(false))
+            {
+                if (await reader.ReadAsync().ConfigureAwait(false))
+                {
+                    var row = new object[reader.FieldCount];
+                    reader.GetValues(row);
+                    var json = JsonConvert.SerializeObject(row);
+                    return JsonConvert.DeserializeObject<T>(json);
+                }
+            }
+            return null;
+        }
+
+        private static async Task<List<Dictionary<string, object>>?> ReadMultipleRecordsAsync(SqlCommand cmd)
+        {
+            var results = new List<Dictionary<string, object>>();
+            using (var reader = await cmd.ExecuteReaderAsync().ConfigureAwait(false))
+            {
+                while (await reader.ReadAsync().ConfigureAwait(false))
+                {
+                    var row = new Dictionary<string, object>();
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        string columnName = reader.GetName(i);
+                        object value = await reader.IsDBNullAsync(i) ? DBNull.Value : reader.GetValue(i);
+                        row[columnName] = value;
+                    }
+                    results.Add(row);
+                }
+            }
+            return results.Count > 0 ? results : null;
+        }
+
+        private static async Task<List<T>?> ReadMultipleRecordsAsync<T>(SqlCommand cmd) where T : class
+        {
+            var results = new List<T>();
+            using (var reader = await cmd.ExecuteReaderAsync().ConfigureAwait(false))
+            {
+                while (await reader.ReadAsync().ConfigureAwait(false))
+                {
+                    var row = new object[reader.FieldCount];
+                    reader.GetValues(row);
+                    var json = JsonConvert.SerializeObject(row);
+                    var item = JsonConvert.DeserializeObject<T>(json);
+                    if (item != null) results.Add(item);
+                }
+            }
+            return results.Count > 0 ? results : null;
+        }
+
+        private static async Task<DataTable> FillDataTableAsync(SqlCommand cmd)
+        {
+            using (var adapter = new SqlDataAdapter(cmd))
+            {
+                var dataTable = new DataTable();
+                await Task.Run(() => adapter.Fill(dataTable)).ConfigureAwait(false);
+                return dataTable;
+            }
+        }
+
+        private static async Task<bool> ExecuteTransactionCommandsAsync(List<(string query, SqlParameter[] parameters, CommandType type)> commands)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                await connection.OpenAsync().ConfigureAwait(false);
+                using (var transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        foreach (var (query, parameters, type) in commands)
                         {
-                            foreach (var (query, parameters, type) in commands)
+                            using (var command = __PrepareCommand(connection, query, type, parameters, transaction))
                             {
-                                using (SqlCommand command = __PrepareCommand(connection, query, type, parameters, transaction))
-                                {
-                                    await command.ExecuteNonQueryAsync();
-                                }
+                                await command.ExecuteNonQueryAsync().ConfigureAwait(false);
                             }
-                            transaction.Commit();
-                            return true;
                         }
-                        catch (Exception ex)
-                        {
-                            transaction.Rollback();
-                            _LogEvent($"Transaction failed: {ex.Message}");
-                            throw;
-                        }
+                        transaction.Commit();
+                        return true;
+                    }
+                    catch
+                    {
+                        transaction.Rollback();
+                        throw;
                     }
                 }
-            }, retryAttempts, retryDelayMilliseconds, nameof(_ExecuteTransactionAsync));
+            }
         }
 
         private static async Task<T> __ExecuteCommandAsync<T>(string query, CommandType type, SqlParameter[]? parameters, Func<SqlCommand, Task<T>> commandExecutor, SqlConnection? externalConnection = null, SqlTransaction? externalTransaction = null)
         {
             _ValidateQuery(query);
+
             SqlConnection connection = externalConnection ?? new SqlConnection(_connectionString);
+
             try
             {
                 if (externalConnection == null)
-                    await connection.OpenAsync();
+                    await connection.OpenAsync().ConfigureAwait(false);
+
                 using (SqlCommand command = __PrepareCommand(connection, query, type, parameters, externalTransaction))
                 {
-                    return await commandExecutor(command);
+                    try
+                    {
+                        return await commandExecutor(command).ConfigureAwait(false);
+                    }
+                    catch (Exception ex)
+                    {
+                        _LogEvent($"Command execution failed for query: {query}. Error: {ex.Message}");
+                        throw;
+                    }
                 }
+            }
+            catch (SqlException sqlEx)
+            {
+                _LogEvent($"SQL Error in command execution: {sqlEx.Message}");
+                throw;
             }
             finally
             {
+                // التخلص من الاتصال إذا كان جديداً
                 if (externalConnection == null)
-                    connection.Dispose();
+                {
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_0_OR_GREATER
+                    await connection.DisposeAsync().ConfigureAwait(false);
+#else
+                        connection.Dispose();
+#endif
+                }
             }
         }
+        #endregion
     }
 }
