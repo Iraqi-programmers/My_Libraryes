@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
+using MyLib_DotNet.DatabaseExecutor.CRUD_Accessories;
+using Newtonsoft.Json;
 
 namespace MyLib_DotNet.DatabaseExecutor.CRUD_Accessories
 {
@@ -41,8 +43,8 @@ namespace MyLib_DotNet.DatabaseExecutor.CRUD_Accessories
                 }
 
                 var configBuilder = new ConfigurationBuilder()
-                    .SetBasePath(Directory.GetCurrentDirectory()) 
-                    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true) 
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                     .Build();
 
                 _sourceName = configBuilder["AppSettings:DataSource"] ?? string.Empty;
@@ -63,6 +65,8 @@ namespace MyLib_DotNet.DatabaseExecutor.CRUD_Accessories
         protected static T? _ExecuteWithRetry<T>(Func<T> operation, byte retryAttempts, ushort retryDelayMilliseconds, string operationName)
         {
             byte attempt = 0;
+            Exception? lastException = null;
+
             while (attempt < retryAttempts)
             {
                 try
@@ -71,18 +75,24 @@ namespace MyLib_DotNet.DatabaseExecutor.CRUD_Accessories
                 }
                 catch (SqlException ex) when (__IsTransientError(ex))
                 {
+                    lastException = ex;
                     attempt++;
                     _LogEvent($"Transient SQL error in '{operationName}', attempt {attempt}: {ex.Message}");
+
                     if (attempt >= retryAttempts)
                         return default;
+
                     Thread.Sleep(retryDelayMilliseconds);
                 }
                 catch (TimeoutException ex)
                 {
+                    lastException = ex;
                     attempt++;
                     _LogEvent($"Timeout in '{operationName}', attempt {attempt}: {ex.Message}");
+
                     if (attempt >= retryAttempts)
                         return default;
+
                     Thread.Sleep(retryDelayMilliseconds);
                 }
                 catch (Exception ex)
@@ -91,39 +101,55 @@ namespace MyLib_DotNet.DatabaseExecutor.CRUD_Accessories
                     throw;
                 }
             }
+            if (lastException != null)
+            {
+                _LogEvent($"All {retryAttempts} attempts failed for '{operationName}'. Last error: {lastException.Message}");
+            }
             return default;
         }
 
         protected static async Task<T?> _ExecuteWithRetryAsync<T>(Func<Task<T>> operation, byte retryAttempts, ushort retryDelayMilliseconds, string operationName)
         {
             byte attempt = 0;
+            Exception? lastException = null;
+
             while (attempt < retryAttempts)
             {
                 try
                 {
-                    return await operation();
+                    return await operation().ConfigureAwait(false);
                 }
                 catch (SqlException ex) when (__IsTransientError(ex))
                 {
+                    lastException = ex;
                     attempt++;
                     _LogEvent($"Transient SQL error in '{operationName}', attempt {attempt}: {ex.Message}");
+
                     if (attempt >= retryAttempts)
-                        return default;
-                    await Task.Delay(retryDelayMilliseconds);
+                        break;
+
+                    await Task.Delay(retryDelayMilliseconds).ConfigureAwait(false);
                 }
                 catch (TimeoutException ex)
                 {
+                    lastException = ex;
                     attempt++;
                     _LogEvent($"Timeout in '{operationName}', attempt {attempt}: {ex.Message}");
+
                     if (attempt >= retryAttempts)
-                        return default;
-                    await Task.Delay(retryDelayMilliseconds);
+                        break;
+
+                    await Task.Delay(retryDelayMilliseconds).ConfigureAwait(false);
                 }
                 catch (Exception ex)
                 {
                     _LogEvent($"Unexpected error in '{operationName}': {ex.Message}");
                     throw;
                 }
+            }
+            if (lastException != null)
+            {
+                _LogEvent($"All {retryAttempts} attempts failed for '{operationName}'. Last error: {lastException.Message}");
             }
             return default;
         }
@@ -270,22 +296,6 @@ namespace MyLib_DotNet.DatabaseExecutor.CRUD_Accessories
             string setClause = string.Join(", ", updateValues.Select(kv => $"{kv.Key} = @{kv.Key}"));
             return $"UPDATE {tableName} SET {setClause} WHERE {columnName} IN ({string.Join(",", ids)})";
         }
-
-        //protected static List<SqlParameter> _GenerateSqlParametersForMultipleRecords(List<Dictionary<string, object>> records, int? userId = null, string? userColumnName = null)
-        //{
-        //    var columnNames = _ExtractColumnNames(records);
-        //    List<SqlParameter> parameters = new List<SqlParameter>();
-
-        //    for (int i = 0; i < records.Count; i++)
-        //    {
-        //        foreach (var column in columnNames)
-        //            parameters.Add(new SqlParameter($"@{column}{i}", records[i][column] ?? DBNull.Value));
-        //    }
-        //    return parameters;
-        //}
-
-        //protected static List<SqlParameter> _GenerateSqlParametersFromDictionary(Dictionary<string, object> updateValues, int? userId = null, string? userColumnName = null)
-        //    => updateValues.Select(kv => new SqlParameter($"@{kv.Key}", kv.Value ?? DBNull.Value)).ToList();
 
         [Conditional("DEBUG")]
         private static void __ValidateListDictionares(List<Dictionary<string, object>> records)
