@@ -32,6 +32,9 @@ namespace MyLib_DotNet.DatabaseExecutor
         public static DataTable? GetAllAsDataTable(string query, SqlParameter[]? parameters = null, CommandType type = CommandType.StoredProcedure, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
             => _ExecuteDataAdapter(query, parameters, type, retryAttempts, retryDelayMilliseconds);
 
+        public static Dictionary<string, DataTable>? GetTables(string query, IEnumerable<string> tableNames, SqlParameter[]? parameters = null, CommandType type = CommandType.StoredProcedure, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
+            => _ExecuteTablesByName(query, tableNames, parameters, type, retryAttempts, retryDelayMilliseconds);
+
         public static bool Update(string query, SqlParameter[]? parameters = null, CommandType type = CommandType.StoredProcedure, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
             => _IsSuccessfulOperation(_ExecuteNonQuery(query, parameters, type, retryAttempts, retryDelayMilliseconds));
 
@@ -112,6 +115,9 @@ namespace MyLib_DotNet.DatabaseExecutor
 
         public static async Task<DataTable?> GetAllAsDataTableAsync(string query, SqlParameter[]? parameters = null, CommandType type = CommandType.StoredProcedure, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
             => await _ExecuteDataAdapterAsync(query, parameters, type, retryAttempts, retryDelayMilliseconds).ConfigureAwait(false);
+
+        public static async Task<Dictionary<string, DataTable>?> GetTablesAsync(string query, IEnumerable<string> tableNames, SqlParameter[]? parameters = null, CommandType type = CommandType.StoredProcedure, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
+            => await _ExecuteTablesByNameAsync(query, tableNames, parameters, type, retryAttempts, retryDelayMilliseconds).ConfigureAwait(false);
 
         public static async Task<bool> UpdateAsync(string query, SqlParameter[]? parameters = null, CommandType type = CommandType.StoredProcedure, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
             => _IsSuccessfulOperation(await _ExecuteNonQueryAsync(query, parameters, type, retryAttempts, retryDelayMilliseconds).ConfigureAwait(false));
