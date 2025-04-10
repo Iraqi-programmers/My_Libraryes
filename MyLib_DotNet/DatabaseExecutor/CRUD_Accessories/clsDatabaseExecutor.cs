@@ -161,11 +161,6 @@ namespace MyLib_DotNet.DatabaseExecutor.CRUD_Accessories
             }, retryAttempts, retryDelayMilliseconds, nameof(_ExecuteWithRetryTablesByName));
         }
 
-
-        protected static Dictionary<string, DataTable>? _ExecuteTablesByName(string query, IEnumerable<string> tableNames, SqlParameter[]? parameters = null, CommandType type = CommandType.Text, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
-            => _ExecuteWithRetryTablesByName(query, tableNames, parameters, type, retryAttempts, retryDelayMilliseconds);
-
-
         protected static bool _ExecuteTransaction(List<(string query, SqlParameter[] parameters, CommandType type)> commands, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
         {
             return _ExecuteWithRetry(() =>
@@ -288,9 +283,6 @@ namespace MyLib_DotNet.DatabaseExecutor.CRUD_Accessories
             }, retryAttempts, retryDelayMilliseconds, nameof(_ExecuteWithRetryTablesByNameAsync)).ConfigureAwait(false);
         }
 
-
-        protected static async Task<Dictionary<string, DataTable>?> _ExecuteTablesByNameAsync(string query, IEnumerable<string> tableNames, SqlParameter[]? parameters = null, CommandType type = CommandType.Text, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
-            => await _ExecuteWithRetryTablesByNameAsync(query, tableNames, parameters, type, retryAttempts, retryDelayMilliseconds).ConfigureAwait(false);
 
         protected static async Task<bool> _ExecuteTransactionAsync(List<(string query, SqlParameter[] parameters, CommandType type)> commands, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
             => await _ExecuteWithRetryAsync(async () => await ExecuteTransactionCommandsAsync(commands), retryAttempts, retryDelayMilliseconds, nameof(_ExecuteTransactionAsync)).ConfigureAwait(false);
