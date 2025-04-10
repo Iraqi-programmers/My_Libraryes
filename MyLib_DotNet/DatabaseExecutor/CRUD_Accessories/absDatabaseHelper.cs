@@ -4,8 +4,6 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
-using MyLib_DotNet.DatabaseExecutor.CRUD_Accessories;
-using Newtonsoft.Json;
 
 namespace MyLib_DotNet.DatabaseExecutor.CRUD_Accessories
 {

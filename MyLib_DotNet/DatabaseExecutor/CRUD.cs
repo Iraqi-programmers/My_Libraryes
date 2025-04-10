@@ -150,4 +150,3 @@ namespace MyLib_DotNet.DatabaseExecutor
                 : await DeleteAsync(_GenerateDeleteQuery(tableName, columnName, ids), columnName, 0, userColumnName, userId, type, retryAttempts, retryDelayMilliseconds).ConfigureAwait(false);
     }
 }
-
