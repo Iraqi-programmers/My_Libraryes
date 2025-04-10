@@ -139,12 +139,22 @@ namespace MyLib_DotNet.DatabaseExecutor.CRUD_Accessories
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             var result = new Dictionary<string, DataTable>();
-                            byte tableIndex = 0;
+
+                            byte tableIndex = 1;
 
                             do
                             {
-                                string currentTableName = tableIndex < tableNames.Count ? tableNames[tableIndex] : $"Table{tableIndex}";
-                                DataTable dataTable = new DataTable(currentTableName);
+                                string currentTableName = $"Table{tableIndex}";
+                                var schemaTable = reader.GetSchemaTable();
+                                if (schemaTable != null && schemaTable.Rows.Count > 0)
+                                {
+                                    var baseTableName = schemaTable.Rows[0]["BaseTableName"].ToString();
+                                    if (!string.IsNullOrEmpty(baseTableName))
+                                    {
+                                        currentTableName = baseTableName;
+                                    }
+                                }
+                                DataTable dataTable = new DataTable();
                                 dataTable.Load(reader);
                                 result.Add(currentTableName, dataTable);
                                 tableIndex++;
@@ -247,7 +257,7 @@ namespace MyLib_DotNet.DatabaseExecutor.CRUD_Accessories
         protected static async Task<DataTable?> _ExecuteDataAdapterAsync(string query, SqlParameter[]? parameters = null, CommandType type = CommandType.Text, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
             => await _ExecuteWithRetryAsync(async () => await __ExecuteCommandAsync(query, type, parameters, async cmd => await FillDataTableAsync(cmd)), retryAttempts, retryDelayMilliseconds, nameof(_ExecuteDataAdapterAsync)).ConfigureAwait(false);
 
-        protected static async Task<Dictionary<string, DataTable>?> _GetTablesByNameAsync(string query, List<string> tableNames, SqlParameter[]? parameters = null, CommandType type = CommandType.Text, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
+        protected static async Task<Dictionary<string, DataTable>?> _ExecuteWithRetryTablesByNameAsync(string query, List<string> tableNames, SqlParameter[]? parameters = null, CommandType type = CommandType.Text, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
         {
             return await _ExecuteWithRetryAsync(async () =>
             {
@@ -259,12 +269,22 @@ namespace MyLib_DotNet.DatabaseExecutor.CRUD_Accessories
                         using (SqlDataReader reader = await command.ExecuteReaderAsync().ConfigureAwait(false))
                         {
                             var result = new Dictionary<string, DataTable>();
-                            byte tableIndex = 0;
+                           
+                            byte tableIndex = 1;
 
                             do
                             {
-                                string currentTableName = tableIndex < tableNames.Count ? tableNames[tableIndex] : $"Table{tableIndex}";
-                                DataTable dataTable = new DataTable(currentTableName);
+                                string currentTableName = $"Table{tableIndex}";
+                                var schemaTable = reader.GetSchemaTable();
+                                if (schemaTable != null && schemaTable.Rows.Count > 0)
+                                {
+                                    var baseTableName = schemaTable.Rows[0]["BaseTableName"].ToString();
+                                    if (!string.IsNullOrEmpty(baseTableName))
+                                    {
+                                        currentTableName = baseTableName;
+                                    }
+                                }
+                                DataTable dataTable = new DataTable();
                                 dataTable.Load(reader);
                                 result.Add(currentTableName, dataTable);
                                 tableIndex++;
@@ -275,8 +295,9 @@ namespace MyLib_DotNet.DatabaseExecutor.CRUD_Accessories
                         }
                     }
                 }
-            }, retryAttempts, retryDelayMilliseconds, nameof(_GetTablesByNameAsync)).ConfigureAwait(false);
+            }, retryAttempts, retryDelayMilliseconds, nameof(_ExecuteWithRetryTablesByNameAsync)).ConfigureAwait(false);
         }
+        
         protected static async Task<bool> _ExecuteTransactionAsync(List<(string query, SqlParameter[] parameters, CommandType type)> commands, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
             => await _ExecuteWithRetryAsync(async () => await ExecuteTransactionCommandsAsync(commands), retryAttempts, retryDelayMilliseconds, nameof(_ExecuteTransactionAsync)).ConfigureAwait(false);
 
