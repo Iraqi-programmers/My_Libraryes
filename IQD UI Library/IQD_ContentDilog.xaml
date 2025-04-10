@@ -15,7 +15,7 @@
  ShowInTaskbar="False"
  WindowStartupLocation="CenterScreen"
  WindowStyle="None"
- mc:Ignorable="d">
+>
     <Window.Resources>
 
 
