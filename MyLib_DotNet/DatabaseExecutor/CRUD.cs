@@ -32,7 +32,7 @@ namespace MyLib_DotNet.DatabaseExecutor
         public static DataTable? GetAllAsDataTable(string query, SqlParameter[]? parameters = null, CommandType type = CommandType.StoredProcedure, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
             => _ExecuteDataAdapter(query, parameters, type, retryAttempts, retryDelayMilliseconds);
 
-        public static Dictionary<string, DataTable>? GetTables(string query, IEnumerable<string> tableNames, SqlParameter[]? parameters = null, CommandType type = CommandType.StoredProcedure, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
+        public static Dictionary<string, DataTable>? GetTables(string query, List<string> tableNames, SqlParameter[]? parameters = null, CommandType type = CommandType.StoredProcedure, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
             => _ExecuteWithRetryTablesByName(query, tableNames, parameters, type, retryAttempts, retryDelayMilliseconds);
 
 
@@ -117,7 +117,7 @@ namespace MyLib_DotNet.DatabaseExecutor
         public static async Task<DataTable?> GetAllAsDataTableAsync(string query, SqlParameter[]? parameters = null, CommandType type = CommandType.StoredProcedure, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
             => await _ExecuteDataAdapterAsync(query, parameters, type, retryAttempts, retryDelayMilliseconds).ConfigureAwait(false);
 
-        public static async Task<Dictionary<string, DataTable>?> GetTablesAsync(string query, IEnumerable<string> tableNames, SqlParameter[]? parameters = null, CommandType type = CommandType.StoredProcedure, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
+        public static async Task<Dictionary<string, DataTable>?> GetTablesAsync(string query, List<string> tableNames, SqlParameter[]? parameters = null, CommandType type = CommandType.StoredProcedure, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
             => await _ExecuteWithRetryTablesByNameAsync(query, tableNames, parameters, type, retryAttempts, retryDelayMilliseconds).ConfigureAwait(false);
 
 
