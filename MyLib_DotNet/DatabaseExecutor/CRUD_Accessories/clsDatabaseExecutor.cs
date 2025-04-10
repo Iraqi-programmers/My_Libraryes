@@ -127,8 +127,43 @@ namespace MyLib_DotNet.DatabaseExecutor.CRUD_Accessories
             }, retryAttempts, retryDelayMilliseconds, nameof(_ExecuteDataAdapter));
         }
 
+
+        protected static Dictionary<string, DataTable>? _ExecuteWithRetryTablesByName(string query, IEnumerable<string> tableNames, SqlParameter[]? parameters = null, CommandType type = CommandType.Text, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
+        {
+            return _ExecuteWithRetry(() =>
+            {
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand command = __PrepareCommand(connection, query, type, parameters, null))
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            var result = new Dictionary<string, DataTable>();
+                            var nameEnumerator = tableNames.GetEnumerator();
+                            bool hasMoreNames = nameEnumerator.MoveNext();
+
+                            do
+                            {
+                                string currentTableName = hasMoreNames ? nameEnumerator.Current : $"Table{result.Count}";
+                                DataTable dataTable = new DataTable(currentTableName);
+                                dataTable.Load(reader);
+                                result.Add(currentTableName, dataTable);
+
+                                hasMoreNames = nameEnumerator.MoveNext();
+                            }
+                            while (!reader.IsClosed && reader.NextResult());
+
+                            return result;
+                        }
+                    }
+                }
+            }, retryAttempts, retryDelayMilliseconds, nameof(_ExecuteWithRetryTablesByName));
+        }
+
         protected static Dictionary<string, DataTable>? _ExecuteTablesByName(string query, IEnumerable<string> tableNames, SqlParameter[]? parameters = null, CommandType type = CommandType.Text, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
             => _ExecuteWithRetryTablesByName(query, tableNames, parameters, type, retryAttempts, retryDelayMilliseconds);
+
 
         protected static bool _ExecuteTransaction(List<(string query, SqlParameter[] parameters, CommandType type)> commands, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
         {
@@ -219,8 +254,43 @@ namespace MyLib_DotNet.DatabaseExecutor.CRUD_Accessories
         protected static async Task<DataTable?> _ExecuteDataAdapterAsync(string query, SqlParameter[]? parameters = null, CommandType type = CommandType.Text, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
             => await _ExecuteWithRetryAsync(async () => await __ExecuteCommandAsync(query, type, parameters, async cmd => await FillDataTableAsync(cmd)), retryAttempts, retryDelayMilliseconds, nameof(_ExecuteDataAdapterAsync)).ConfigureAwait(false);
 
+
+        protected static async Task<Dictionary<string, DataTable>?> _ExecuteWithRetryTablesByNameAsync(string query, IEnumerable<string> tableNames, SqlParameter[]? parameters = null, CommandType type = CommandType.Text, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
+        {
+            return await _ExecuteWithRetryAsync(async () =>
+            {
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    await connection.OpenAsync().ConfigureAwait(false);
+                    using (SqlCommand command = __PrepareCommand(connection, query, type, parameters, null))
+                    {
+                        using (SqlDataReader reader = await command.ExecuteReaderAsync().ConfigureAwait(false))
+                        {
+                            var result = new Dictionary<string, DataTable>();
+                            var nameEnumerator = tableNames.GetEnumerator();
+                            bool hasMoreNames = nameEnumerator.MoveNext();
+
+                            do
+                            {
+                                string currentTableName = hasMoreNames ? nameEnumerator.Current : $"Table{result.Count}";
+                                DataTable dataTable = new DataTable(currentTableName);
+                                dataTable.Load(reader);
+                                result.Add(currentTableName, dataTable);
+
+                                hasMoreNames = nameEnumerator.MoveNext();
+                            }
+                            while (!reader.IsClosed && await reader.NextResultAsync().ConfigureAwait(false));
+
+                            return result;
+                        }
+                    }
+                }
+            }, retryAttempts, retryDelayMilliseconds, nameof(_ExecuteWithRetryTablesByNameAsync)).ConfigureAwait(false);
+        }
+
         protected static async Task<Dictionary<string, DataTable>?> _ExecuteTablesByNameAsync(string query, IEnumerable<string> tableNames, SqlParameter[]? parameters = null, CommandType type = CommandType.Text, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
             => await _ExecuteWithRetryTablesByNameAsync(query, tableNames, parameters, type, retryAttempts, retryDelayMilliseconds).ConfigureAwait(false);
+
 
         protected static async Task<bool> _ExecuteTransactionAsync(List<(string query, SqlParameter[] parameters, CommandType type)> commands, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
             => await _ExecuteWithRetryAsync(async () => await ExecuteTransactionCommandsAsync(commands), retryAttempts, retryDelayMilliseconds, nameof(_ExecuteTransactionAsync)).ConfigureAwait(false);
