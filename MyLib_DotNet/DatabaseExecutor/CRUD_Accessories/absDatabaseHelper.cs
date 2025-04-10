@@ -152,6 +152,8 @@ namespace MyLib_DotNet.DatabaseExecutor.CRUD_Accessories
             return default;
         }
 
+
+        
         protected static void _LogEvent(string message)
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
