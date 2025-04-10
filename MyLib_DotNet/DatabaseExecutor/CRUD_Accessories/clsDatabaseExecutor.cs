@@ -127,6 +127,7 @@ namespace MyLib_DotNet.DatabaseExecutor.CRUD_Accessories
             }, retryAttempts, retryDelayMilliseconds, nameof(_ExecuteDataAdapter));
         }
 
+
         protected static Dictionary<string, DataTable>? _ExecuteWithRetryTablesByName(string query, IEnumerable<string> tableNames, SqlParameter[]? parameters = null, CommandType type = CommandType.Text, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
         {
             return _ExecuteWithRetry(() =>
@@ -282,8 +283,10 @@ namespace MyLib_DotNet.DatabaseExecutor.CRUD_Accessories
             }, retryAttempts, retryDelayMilliseconds, nameof(_ExecuteWithRetryTablesByNameAsync)).ConfigureAwait(false);
         }
 
+
         protected static async Task<bool> _ExecuteTransactionAsync(List<(string query, SqlParameter[] parameters, CommandType type)> commands, byte retryAttempts = 5, ushort retryDelayMilliseconds = 500)
             => await _ExecuteWithRetryAsync(async () => await ExecuteTransactionCommandsAsync(commands), retryAttempts, retryDelayMilliseconds, nameof(_ExecuteTransactionAsync)).ConfigureAwait(false);
+
 
         #region Helper Methods
         private static async Task<Dictionary<string, object>?> ReadSingleRecordAsync(SqlCommand cmd)

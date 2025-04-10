@@ -12,6 +12,8 @@
         <ResourceDictionary Source="/IQD_UI_Library;component/Styles/TextBoxStyles.xaml"/>
         <ResourceDictionary Source="/IQD_UI_Library;component/Styles/ComboBoxStyles.xaml"/>
         <ResourceDictionary Source="/IQD_UI_Library;component/Styles/CheckBoxStyle.xaml"/>
+        <ResourceDictionary Source="/IQD_UI_Library;component/Styles/DateTimePickerStyle.xaml"/>
+        <ResourceDictionary Source="/IQD_UI_Library;component/Styles/PasswordBoxStyle.xaml"/>
 
         <!-- الظل -->
         <ResourceDictionary Source="/IQD_UI_Library;component/CustomControls/CustomShadows/CustomShadowStyles.xaml"/>
