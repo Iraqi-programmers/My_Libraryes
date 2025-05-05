@@ -43,6 +43,9 @@
     <Page Update="Styles\ButtonStyles3D.xaml">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Page>
+    <Page Update="Styles\TextValidationStyles.xaml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Page>
     <Page Update="Themes\Generic.xaml">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Page>

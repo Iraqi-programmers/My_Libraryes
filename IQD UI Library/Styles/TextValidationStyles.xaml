@@ -1,0 +1,123 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:IQD_UI_Library"
+                    >
+
+    <!--TextValdationStyles-->
+    <local:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    <local:ImageSourceToVisibilityConverter x:Key="ImageSourceToVisibilityConverter"/>
+    <local:ErrorAndTouchedToVisibilityConverter x:Key="ErrorAndTouchedToVisibilityConverter" />
+
+    <Style TargetType="{x:Type local:IQD_TextBoxValidation}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:IQD_TextBoxValidation}">
+                    <Grid>
+                        
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+
+                        <Border x:Name="Border"
+                                Grid.Row="0"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="2"
+                                MinHeight="{TemplateBinding MinHeight}">
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <!-- الأيقونة -->
+                                <Image x:Name="InnerIcon"
+                       Grid.Column="0"
+                       Source="{TemplateBinding InnerBorderImage}"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center"
+                       Margin="0,0,5,0"
+                       Width="16"
+                       Height="16"
+                       Visibility="{Binding InnerBorderImage, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ImageSourceToVisibilityConverter}}" />
+
+                                <!-- الإدخال -->
+                                <ScrollViewer x:Name="PART_ContentHost"
+                              Grid.Column="1"
+                              Margin="5,0"
+                              VerticalAlignment="Center"  />
+
+                                <!-- النص البديل -->
+                                <TextBlock x:Name="PlaceholderTextBlock"
+                           Grid.Column="1"
+                           Text="{TemplateBinding PlaceholderText}"
+                           Foreground="Gray"
+                           Visibility="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource StringToVisibilityConverter}}"
+                           Margin="5,0,0,0"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           IsHitTestVisible="False"
+                           Panel.ZIndex="1" />
+                            </Grid>
+                        </Border>
+
+                        <!-- رسالة الخطأ -->
+                        <TextBlock x:Name="ErrorText"
+                                  Grid.Row="1"
+                                   Height="20"
+                                  Text="{TemplateBinding ErrorMessage}"
+                                  Foreground="{TemplateBinding ErrorTextColor}"
+                                  Margin="5,2,0,0"
+                                  FontSize="11" 
+                                  TextWrapping="Wrap">
+                            <TextBlock.Visibility>
+                                <MultiBinding Converter="{StaticResource ErrorAndTouchedToVisibilityConverter}">
+                                    <Binding Path="HasError" RelativeSource="{RelativeSource TemplatedParent}" />
+                                    <Binding Path="IsTouched" RelativeSource="{RelativeSource TemplatedParent}" />
+                                </MultiBinding>
+                            </TextBlock.Visibility>
+                        </TextBlock>
+                    
+                    </Grid>
+                    
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="HasError" Value="True">
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{Binding ErrorBorderBrush, RelativeSource={RelativeSource TemplatedParent}}" />
+                        </Trigger>
+
+                        <Trigger Property="InnerIconAlignment" Value="Left">
+                            <Setter TargetName="InnerIcon" Property="Grid.Column" Value="0"/>
+                            <Setter TargetName="PART_ContentHost" Property="Grid.Column" Value="1"/>
+                            <Setter TargetName="PlaceholderTextBlock" Property="Grid.Column" Value="1"/>
+                        </Trigger>
+
+                        <Trigger Property="InnerIconAlignment" Value="Right">
+                            <Setter TargetName="InnerIcon" Property="Grid.Column" Value="1"/>
+                            <Setter TargetName="PART_ContentHost" Property="Grid.Column" Value="0"/>
+                            <Setter TargetName="PlaceholderTextBlock" Property="Grid.Column" Value="0"/>
+                        </Trigger>
+
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{Binding FocusedBorderBrush, RelativeSource={RelativeSource TemplatedParent}}" />
+                            <Setter TargetName="PlaceholderTextBlock" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="BorderBrush" Value="White"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="MinHeight" Value="40"/>
+        <Setter Property="MinWidth" Value="120"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+    </Style>
+
+
+</ResourceDictionary>
