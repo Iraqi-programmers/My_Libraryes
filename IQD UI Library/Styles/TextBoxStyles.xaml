@@ -8,8 +8,10 @@
         <ResourceDictionary Source="/IQD_UI_Library;component/Styles/TextBoxes3D.xaml"/>
         <ResourceDictionary Source="/IQD_UI_Library;component/Themes/LightTheme.xaml"/>
         <ResourceDictionary Source="/IQD_UI_Library;component/Themes/DarkTheme.xaml"/>
+        <ResourceDictionary Source="/IQD_UI_Library;component/Styles/TextValidationStyles.xaml"/>
     </ResourceDictionary.MergedDictionaries>
     
+  
     <!-- Start: Protextbox -->
     <Style x:Key="ProTextBoxStyle" TargetType="{x:Type TextBox}">
         <Setter Property="Background" Value="{DynamicResource TertiaryWhiteColor}"/>
