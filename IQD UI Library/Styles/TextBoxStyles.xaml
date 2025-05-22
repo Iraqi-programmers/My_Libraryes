@@ -8,7 +8,6 @@
         <ResourceDictionary Source="/IQD_UI_Library;component/Styles/TextBoxes3D.xaml"/>
         <ResourceDictionary Source="/IQD_UI_Library;component/Themes/LightTheme.xaml"/>
         <ResourceDictionary Source="/IQD_UI_Library;component/Themes/DarkTheme.xaml"/>
-        <ResourceDictionary Source="/IQD_UI_Library;component/Styles/TextValidationStyles.xaml"/>
     </ResourceDictionary.MergedDictionaries>
     
   
@@ -84,7 +83,8 @@
     </Style>
     <!--Paswordbox-->
 
-    <Style x:Name="ModrenTextBox1" TargetType="{x:Type local:IQD_TextBox}">
+
+    <Style TargetType="{x:Type local:IQD_TextBox}">
 
         <Setter Property="FontSize" Value="11"/>
         <Setter Property="FontFamily" Value="Segoe UI"/>
@@ -159,9 +159,6 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-
-
-
 
     </Style>
 

@@ -9,7 +9,7 @@
     <local:ImageSourceToVisibilityConverter x:Key="ImageSourceToVisibilityConverter"/>
     <local:ErrorAndTouchedToVisibilityConverter x:Key="ErrorAndTouchedToVisibilityConverter" />
 
-    <Style TargetType="{x:Type local:IQD_TextBoxValidation}">
+    <Style  TargetType="{x:Type local:IQD_TextBoxValidation}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:IQD_TextBoxValidation}">

@@ -46,7 +46,7 @@ namespace IQD_UI_Library
 
 
         public static readonly DependencyProperty BorderBrushing =
-       DependencyProperty.Register("BorderBrushing", typeof(Brush), typeof(IQD_TextBox), new PropertyMetadata(null));
+       DependencyProperty.Register("BorderBrushing", typeof(Brush), typeof(IQD_TextBox), new PropertyMetadata(Brushes.DarkBlue));
 
         public Brush BorderBrushes
         {
