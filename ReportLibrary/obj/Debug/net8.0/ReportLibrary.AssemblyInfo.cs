@@ -17,7 +17,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyDescriptionAttribute("Professional export library for generating styled PDF and Excel reports using Que" +
     "stPDF and ClosedXML.")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.1.9.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.1.9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.1.9+46b2a1a7ad80c2406061a9fe840ea4984daff94b")]
 [assembly: System.Reflection.AssemblyProductAttribute("ReportLibrary")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ReportLibrary")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.1.9.0")]

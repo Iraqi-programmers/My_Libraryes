@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>ReportLibrary</id>
-    <version>1.1.9</version>
+    <version>1.2.0</version>
     <authors>IQD_Group</authors>
     <description>Professional export library for generating styled PDF and Excel reports using QuestPDF and ClosedXML.</description>
     <copyright>Copyright © 2025</copyright>

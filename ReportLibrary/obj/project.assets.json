@@ -5117,13 +5117,13 @@
     "C:\\Program Files (x86)\\Syncfusion\\Essential Studio\\WPF\\29.1.33\\ToolboxNuGetPackages": {}
   },
   "project": {
-    "version": "1.1.9",
+    "version": "1.2.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Abu_Sanad\\Desktop\\RealProject\\ReportLibrary\\ReportLibrary.csproj",
+      "projectUniqueName": "C:\\Users\\Abu_Sanad\\Documents\\GitHub\\My_Libraryes\\ReportLibrary\\ReportLibrary.csproj",
       "projectName": "ReportLibrary",
-      "projectPath": "C:\\Users\\Abu_Sanad\\Desktop\\RealProject\\ReportLibrary\\ReportLibrary.csproj",
+      "projectPath": "C:\\Users\\Abu_Sanad\\Documents\\GitHub\\My_Libraryes\\ReportLibrary\\ReportLibrary.csproj",
       "packagesPath": "C:\\Users\\Abu_Sanad\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Abu_Sanad\\Desktop\\RealProject\\ReportLibrary\\obj\\",
+      "outputPath": "C:\\Users\\Abu_Sanad\\Documents\\GitHub\\My_Libraryes\\ReportLibrary\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
