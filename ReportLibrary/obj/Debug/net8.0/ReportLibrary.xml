@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ReportLibrary</name>
+    </assembly>
+    <members>
+        <member name="T:ReportLibrary.Enums.ReportType">
+            <summary>
+            Defines the type of report to generate.
+            </summary>
+        </member>
+        <member name="F:ReportLibrary.Enums.ReportType.Sales">
+            <summary>
+            A report for sales transactions.
+            </summary>
+        </member>
+        <member name="F:ReportLibrary.Enums.ReportType.Inventory">
+            <summary>
+            A report for inventory or stock levels.
+            </summary>
+        </member>
+        <member name="F:ReportLibrary.Enums.ReportType.Custom">
+            <summary>
+            A custom report defined by the user.
+            </summary>
+        </member>
+        <member name="T:ReportLibrary.ExcelReportBuilder">
+            <summary>
+            Provides functionality to generate Excel (.xlsx) reports from a DataTable using ClosedXML.
+            </summary>
+        </member>
+        <member name="M:ReportLibrary.ExcelReportBuilder.GenerateExcelReport(System.Data.DataTable,ReportLibrary.ReportOptions,System.String)">
+            <summary>
+            Generates an Excel report and saves it to the specified output path.
+            </summary>
+            <param name="data">The source data as a DataTable.</param>
+            <param name="options">The report customization options (title, footer, font size, etc.).</param>
+            <param name="outputPath">The full path where the Excel file will be saved.</param>
+            <exception cref="T:System.ArgumentException">Thrown if the provided DataTable is null or empty.</exception>
+        </member>
+        <member name="M:ReportLibrary.Helper.ColorConverter.ToQuestColor(System.Drawing.Color)">
+            <summary>
+            Converts System.Drawing.Color to QuestPDF compatible color.
+            </summary>
+        </member>
+        <member name="T:ReportLibrary.Helper.LicenseManager">
+            <summary>
+            Ensures required license setup and initialization for the reporting system.
+            </summary>
+        </member>
+        <member name="T:ReportLibrary.PdfReportBuilder">
+            <summary>
+            Provides functionality to generate PDF reports using QuestPDF from a DataTable.
+            </summary>
+        </member>
+        <member name="M:ReportLibrary.PdfReportBuilder.GeneratePdfReport(System.Data.DataTable,ReportLibrary.ReportOptions,System.String)">
+            <summary>
+            Generates a PDF report and saves it to the specified path using the provided data and options.
+            <param name="data">The source data as a DataTable.</param>
+            <param name="options">The report customization options (header, footer, font size, etc.).</param>
+            <param name="outputPath">The full path where the PDF file will be saved.</param>
+            </summary>
+        </member>
+        <member name="T:ReportLibrary.Report">
+            <summary>
+            Provides functionality to export tabular data to PDF or Excel using QuestPDF and ClosedXML.
+            </summary>
+        </member>
+        <member name="M:ReportLibrary.Report.Export(System.Data.DataTable,ReportLibrary.ReportOptions,System.String)">
+            <summary>
+            Exports the given DataTable to the specified format (.pdf or .xlsx).
+            </summary>
+        </member>
+        <member name="M:ReportLibrary.Report.Print(System.Data.DataTable,ReportLibrary.ReportOptions)">
+            <summary>
+            Print Only PDF reports.
+            </summary>
+            <param name="data"></param>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ReportLibrary.ReportOptions">
+            <summary>
+            Represents the customizable settings for generating a report.
+            </summary>
+        </member>
+    </members>
+</doc>
