@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ClosedXML" Version="0.95.4" />
+    <PackageReference Include="QuestPDF" Version="2025.5.0" />
+  </ItemGroup>
+
+
+
+	<PropertyGroup>
+		<PackageId>ReportLibrary</PackageId>
+		<Version>1.1.9</Version>
+		<Authors>IQD_Group</Authors>
+		<Company>IQD Software</Company>
+		<Description>Professional export library for generating styled PDF and Excel reports using QuestPDF and ClosedXML.</Description>
+		<Copyright>Copyright © 2025</Copyright>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<IncludeReferencedProjects>true</IncludeReferencedProjects>
+		<RepositoryUrl>https://github.com/AbuTharHatem95</RepositoryUrl>
+		<TargetFramework>net8.0</TargetFramework>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<NoWarn>1591</NoWarn>
+	</PropertyGroup>
+
+
+</Project>
