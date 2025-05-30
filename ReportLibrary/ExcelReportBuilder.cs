@@ -168,5 +168,11 @@ namespace ReportLibrary
                 return false;
             }
         }
+
+        internal static bool GenerateExcelReport<T>(IEnumerable<T> data, ReportOptions options, string outputPath)
+        {
+            var table = ReportHelper.ToDataTable(data);
+            return GenerateExcelReport(table, options, outputPath);
+        }
     }
 }

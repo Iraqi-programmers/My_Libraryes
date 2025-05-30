@@ -12,6 +12,7 @@ namespace ReportLibrary
     {
         public static string? LastErrorMessage { get; private set; }
 
+        #region Exports
         /// <summary>
         /// Exports the given DataTable to the specified format (.pdf or .xlsx).
         /// </summary>
@@ -34,6 +35,25 @@ namespace ReportLibrary
             }
         }
 
+        /// <summary>
+        /// Overload: Exports IEnumerable<T/> to the specified format (.pdf or .xlsx).
+        /// </summary>
+        public static bool Export<T>(IEnumerable<T> data, ReportOptions options, string outputPath)
+        {
+            try
+            {
+                var table = ReportHelper.ToDataTable(data);
+                return Export(table, options, outputPath);
+            }
+            catch (Exception ex)
+            {
+                LastErrorMessage = ex.Message;
+                return false;
+            }
+        }
+        #endregion
+
+        #region Print
         /// <summary>
         /// Print Only PDF reports.
         /// </summary>
@@ -72,6 +92,24 @@ namespace ReportLibrary
             return false;
         }
 
+
+        /// <summary>
+        /// Overload: Print PDF report from IEnumerable<T/>.
+        /// </summary>
+        public static bool Print<T>(IEnumerable<T> data, ReportOptions options)
+        {
+            try
+            {
+                var table = ReportHelper.ToDataTable(data);
+                return Print(table, options);
+            }
+            catch (Exception ex)
+            {
+                LastErrorMessage = ex.Message;
+                return false;
+            }
+        }
+        #endregion
 
     }
 }

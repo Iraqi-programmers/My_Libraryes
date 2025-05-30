@@ -288,5 +288,19 @@ namespace ReportLibrary
             }
         }
 
+        /// <summary>
+        /// Generates a PDF Using IEnumerable<T/>    
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="data"></param>
+        /// <param name="options"></param>
+        /// <param name="outputPath"></param>
+        /// <returns></returns>
+        internal static bool GeneratePdfReport<T>(IEnumerable<T> data, ReportOptions options, string outputPath)
+        {
+            var table = ReportHelper.ToDataTable(data);
+            return GeneratePdfReport(table, options, outputPath);
+        }
+
     }
 }
