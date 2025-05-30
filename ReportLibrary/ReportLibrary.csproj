@@ -15,7 +15,7 @@
 
 	<PropertyGroup>
 		<PackageId>ReportLibrary</PackageId>
-		<Version>1.2.0</Version>
+		<Version>1.2.1</Version>
 		<Authors>IQD_Group</Authors>
 		<Company>IQD Software</Company>
 		<Description>Professional export library for generating styled PDF and Excel reports using QuestPDF and ClosedXML.</Description>
